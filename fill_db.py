@@ -11,34 +11,48 @@ from tqdm import tqdm
 connect = sqlite3.connect('main_db.db')
 
 TICKERS = [
-    # Tech / Internet
-    "AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "ADBE", "CRM", "ORCL",
-    "AMD", "INTC", "CSCO", "QCOM", "TXN", "AVGO", "MU", "AMAT", "LRCX", "KLAC",
-    "SNPS", "CDNS", "PANW", "CRWD", "NET", "SHOP", "UBER", "ABNB", "PYPL", "SQ",
+    "AAPL","ABBV","ABNB","ABT","ACGL","ACN","ADBE","ADI","ADM","ADP",
+    "ADSK","AEE","AEP","AES","AFL","AIG","AIZ","AJG","AKAM","ALB",
+    "ALGN","ALK","ALL","ALLE","AMAT","AMCR","AMD","AME","AMGN","AMP",
+    "AMT","AMZN","ANET","ANSS","AON","AOS","APA","APD","APH","APTV",
+    "ARE","ATO","AVB","AVGO","AVY","AWK","AXP","AZO","BA","BAC",
+    "BALL","BAX","BBWI","BBY","BDX","BEN","BG","BIIB","BK","BKNG",
+    "BKR","BLK","BMY","BR","BRO","BSX","BWA","BX","BXP","C",
+    "CAG","CAH","CARR","CAT","CB","CBOE","CBRE","CCI","CCL","CDNS",
+    "CDW","CE","CEG","CF","CFG","CHD","CHRW","CHTR","CI","CINF",
+    "CL","CLX","CMA","CMCSA","CME","CMG","CMI","CMS","CNC","CNP",
+    "COF","COO","COP","COST","CPB","CPRT","CPT","CRL","CRM","CSCO",
+    "CSGP","CSX","CTAS","CTLT","CTRA","CTSH","CTVA","CVS","CVX","CZR",
+    "D","DAL","DD","DE","DFS","DG","DGX","DHI","DHR","DIS",
+    "DLR","DLTR","DOV","DOW","DPZ","DRI","DTE","DUK","DVA","DVN",
+    "DXCM","EA","EBAY","ECL","ED","EFX","EG","EIX","EL","ELV",
+    "EMN","EMR","ENPH","EOG","EPAM","EQIX","EQR","EQT","ES","ESS",
+    "ETN","ETR","EVRG","EW","EXC","EXPD","EXPE","EXR","F","FANG",
+    "FAST","FCX","FDS","FDX","FE","FFIV","FICO","FIS","FISV","FITB",
+    "FLT","FMC","FOX","FOXA","FRT","FTNT","FTV","GD","GE","GEHC",
+    "GEN","GILD","GIS","GL","GLW","GM","GNRC","GOOG","GOOGL","GPC",
+    "GPN","GRMN","GS","HAL","HAS","HBAN","HCA","HD","HES","HIG",
+    "HII","HLT","HOLX","HON","HPE","HPQ","HRL","HSIC","HST","HSY",
+    "HUM","HWM","IBM","ICE","IDXX","IEX","IFF","ILMN","INCY","INTC",
+    "INTU","INVH","IP","IPG","IQV","IR","IRM","ISRG","IT","ITW",
+    "J","JBHT","JBL","JCI","JKHY","JNJ","JNPR","JPM","K","KDP",
+    "KEY","KEYS","KHC","KIM","KLAC","KMB","KMI","KMX","KO","KR",
+    "LDOS","LEN","LH","LHX","LIN","LKQ","LLY","LMT","LNT","LOW",
+    "LRCX","LULU","LUV","LVS","LW","LYB","LYV","MA","MAA","MAR",
+    "MAS","MCD","MCHP","MCK","MCO","MDLZ","MDT","MET","META","MGM",
+    "MHK","MKC","MKTX","MLM","MMC","MMM","MNST","MO","MOS","MPC",
+    "MRK","MRNA","MRO","MS","MSCI","MSFT","MSI","MTB","MTCH","MTD",
+    "MU","NCLH","NDAQ","NEE","NEM","NFLX","NI","NKE","NOC","NOW",
+    "NRG","NSC","NTAP","NTRS","NUE","NVDA","NVR","NWS","NWSA","NXPI",
+    "O","ODFL","OKE","OMC","ON","ORCL","ORLY","OTIS","PARA","PAYC",
+    "PAYX","PCAR","PCG","PEAK","PEG","PEP","PFE","PFG","PG","PGR",
+    "PH","PHM","PKG","PLD","PM","PNC","PNR","PNW","PODD","POOL",
+    "PPG","PPL","PRU","PSA","PSX","PTC","PWR","PYPL","QCOM","QRVO",
+    "RCL","REG","REGN","RF","RHI","RJF","RL","RMD","ROK","ROL",
+    "ROP","ROST","RSG","RTX","RVTY","SBAC","SBUX","SCHW"
+    ]
 
-    # Finance
-    "JPM", "BAC", "WFC", "C", "GS", "MS", "BLK", "SCHW", "AXP", "BK",
-
-    # Healthcare / Pharma
-    "JNJ", "PFE", "MRK", "LLY", "ABBV", "BMY", "TMO", "DHR", "MDT", "ABT",
-
-    # Consumer
-    "WMT", "COST", "HD", "LOW", "MCD", "SBUX", "NKE", "DIS", "PEP", "KO",
-    "PG", "CL", "KMB", "EL", "UL",
-
-    # Energy / Industrial / Materials
-    "XOM", "CVX", "COP", "SLB", "EOG", "CAT", "DE", "BA", "GE", "HON",
-    "MMM", "LIN", "APD", "NEM", "FCX",
-
-    # Telecom / Utilities / REIT
-    "VZ", "T", "TMUS", "NEE", "DUK", "SO", "D", "PLD", "AMT", "CCI",
-
-    # ETFs
-    "SPY", "QQQ", "DIA", "IWM", "VTI", "XLF", "XLK", "XLV", "XLE", "XLI",
-    "XLP", "XLY", "XLB", "XLU", "VNQ", "SMH", "ARKK", "TLT", "GLD", "USO"
-]
-
-START_DATE = '2015-01-01'
+START_DATE = '2010-01-01'
 END_DATE = '2026-03-12'
 
 
@@ -64,6 +78,7 @@ def load_one_ticker(ticker: str) -> pd.DataFrame:
 
     df['ticker'] = ticker
     
+    df[['open', 'high', 'low', 'close']] = df[['open', 'high', 'low', 'close']].round(2)
     df = df[['date', 'ticker', 'open', 'high', 'low', 'close', 'volume']].copy()
     df = df.dropna()
     
@@ -113,7 +128,7 @@ def fill_db() -> None:
         inserted_now = connect.total_changes - before
         total_inserted += inserted_now
 
-        print(f'{ticker}: было добавлено {inserted_now} строк')
+        print(f'\n{ticker}: было добавлено {inserted_now} строк')
     
     
     cursor.execute('SELECT COUNT(*) FROM stock_prices')
