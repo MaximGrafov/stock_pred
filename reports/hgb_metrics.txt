@@ -1,0 +1,24 @@
+
+            
+            ==== Baseline HighGradientBoosting ====
+            
+Train rows: 696975
+Val rows: 166844
+Test rows: 164669
+
+
+            ==== Validation metrics ====
+
+Validation - Accuracy: 0.5083
+Balanced accuracy: 0.504990
+F1: 0.5719
+AUC-ROC: 0.5073
+
+
+            ==== Test metrics ====
+
+Test - Accuracy: 0.5125
+Balanced accuracy: 0.5040
+F1: 0.5703
+AUC-ROC: 0.5099
+

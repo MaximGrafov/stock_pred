@@ -2,3 +2,6 @@ yfinance
 pandas
 pyarrow
 tqdm
+numpy
+scikit-learn
+matplotlib
