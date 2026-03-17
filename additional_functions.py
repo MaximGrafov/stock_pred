@@ -1,10 +1,12 @@
 # additional_functions.py
 # Файл для скриптов, которые создают лишний визуальный мусор в файлах
 
+
+import yaml
 import pandas as pd
 import numpy as np
 
-from typing import Mapping
+from typing import Any, Mapping
 from pathlib import Path
 from sklearn.metrics import classification_report, confusion_matrix
 
@@ -40,7 +42,7 @@ Predicted class 1 share: {positive_rate:.4f}
             Classification report
         
 {classification_report(y_part, pred, digits=4)}          
-          """.strip())
+          """)
     
     
 def write_metrics_reports(
@@ -70,7 +72,7 @@ Test rows: {test_rows}
             ==== Validation metrics ====
 
 Validation - Accuracy: {val_metrics['accuracy']:.4f}
-Balanced accuracy: {val_metrics['balanced_accuracy']:4f}
+Balanced accuracy: {val_metrics['balanced_accuracy']:.4f}
 F1: {val_metrics['f1']:.4f}
 AUC-ROC: {val_metrics['auc_roc']:.4f}
 
@@ -85,3 +87,27 @@ AUC-ROC: {test_metrics['auc_roc']:.4f}
 """)
     
         print(f'Report saved: {report_path}')
+        
+        
+def load_config(project_root: Path) -> dict:
+    config_path = project_root / 'config.yaml'
+    
+    with config_path.open('r', encoding='utf-8') as config_file:
+        config = yaml.safe_load(config_file) or {}
+    
+    return config
+
+
+def require_config_value(config: Mapping[str, Any], key_path: str) -> Any:
+    current: Any = config
+    
+    for part in key_path.split('.'):
+        if not isinstance(current, Mapping) or part not in current:
+            raise KeyError(f'В файле config отсутствует ключ: {key_path}')
+       
+        current = current[part]
+    
+    if current is None:
+        raise KeyError(f'В файле config пустой ключ: {key_path}')
+    
+    return current

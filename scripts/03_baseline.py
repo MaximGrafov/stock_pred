@@ -14,29 +14,33 @@ from sklearn.metrics import (
     accuracy_score, f1_score,roc_auc_score,\
     balanced_accuracy_score
     )
-from additional_functions import print_eval_block, write_metrics_reports
+from additional_functions import (
+    print_eval_block, write_metrics_reports,
+    load_config, require_config_value
+    )
 
 
 
-root = Path(__file__).resolve().parents[1]
-data_path = root / 'data' / 'dataset.parquet'
-reports_dir = root / 'reports'
+project_root = Path(__file__).resolve().parents[1]
+config = load_config(project_root)
+
+dataset_path = require_config_value(config, 'paths.dataset_parquet')
+reports_dir = require_config_value(config, 'paths.report_dir')
 reports_dir.mkdir(exist_ok=True)
 
+_ = require_config_value(config, 'features.baseline')
 
-df = pd.read_parquet(data_path)
+
+mod = require_config_value(config, 'models.logistic_regression')
+
+df = pd.read_parquet(dataset_path)
 df['date'] = pd.to_datetime(df['date'])
 
 if 'target' not in df.columns:
     raise ValueError('Отсутствует колонка target в датасете')
 
 
-feature_columns = [
-                    'ticker', 'returns_1', 'returns_3', 'returns_5', 'returns_10',
-                    'moving_avg_5', 'moving_avg_10', 'moving_avg_20',
-                    'volume_10', 'close_mavg_5_ratio', 'close_mavg_20_ratio'
-                  ]
-
+feature_columns = _.copy()
 
 for column in feature_columns:
     if column not in df.columns:
@@ -64,11 +68,7 @@ x_val, y_val     = val_df[feature_columns], val_df['target']
 x_test, y_test   = test_df[feature_columns], test_df['target']
     
 
-numeric_features = [
-                    'returns_1', 'returns_3', 'returns_5', 'returns_10',
-                    'moving_avg_5', 'moving_avg_10', 'moving_avg_20',
-                    'volume_10', 'close_mavg_5_ratio', 'close_mavg_20_ratio'
-                   ]
+numeric_features = [col for col in _ if col != 'ticker']
 
 categorical_features = ['ticker']
 
@@ -100,9 +100,13 @@ preprocessor = ColumnTransformer(
 clf = Pipeline(
     steps=[
         ('preprocessor', preprocessor),
-        ('model', LogisticRegression(max_iter=1000, n_jobs=-1, class_weight='balanced'))
-          ]
-              )
+        ('model', LogisticRegression(max_iter=mod[0],
+                                     n_jobs=mod[1],
+                                     class_weight=mod[2]
+                                    )
+                                )
+                            ]
+                        )
 
 
 clf.fit(x_train, y_train)

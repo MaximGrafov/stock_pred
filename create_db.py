@@ -3,36 +3,48 @@
 
 import sqlite3
 
-connect = sqlite3.connect('main_db.db')
+from pathlib import Path
+
+from additional_functions import load_config, require_config_value
 
 
-def create_db():
+def create_db() -> None:
 
-    cursor = connect.cursor()
+    project_root = Path(__file__).resolve().parent
+    config = load_config(project_root)
+    
+    database_file = require_config_value(config, 'paths.database_file')
+    
+    database_path = project_root / database_file
+    database_path.parent.mkdir(parents=True, exist_ok=True)
 
 
-    cursor.executescript("""--sql
-                   CREATE TABLE IF NOT EXISTS stock_prices
-                   (
-                       id     INTEGER PRIMARY KEY AUTOINCREMENT,
-                       date   TEXT NOT NULL,
-                       ticker TEXT NOT NULL,
-                       open   REAL NOT NULL,
-                       high   REAL NOT NULL,
-                       low    REAL NOT NULL,
-                       close  REAL NOT NULL,
-                       volume REAL NOT NULL,
-                       UNIQUE(date, ticker)
-                   );
-                   
-                   
-                   CREATE INDEX IF NOT EXISTS idx_stock_ticker_data
-                   ON stock_prices(ticker, date);
-                   
-                   """)
+    with sqlite3.connect(database_path) as connect:
+        
+        cursor = connect.cursor()
 
-    connect.commit()
-    connect.close()
+
+        cursor.executescript("""--sql
+                       CREATE TABLE IF NOT EXISTS stock_prices
+                       (
+                           id     INTEGER PRIMARY KEY AUTOINCREMENT,
+                           date   TEXT NOT NULL,
+                           ticker TEXT NOT NULL,
+                           open   REAL NOT NULL,
+                           high   REAL NOT NULL,
+                           low    REAL NOT NULL,
+                           close  REAL NOT NULL,
+                           volume REAL NOT NULL,
+                           UNIQUE(date, ticker)
+                       );
+
+
+                       CREATE INDEX IF NOT EXISTS idx_stock_ticker_data
+                       ON stock_prices(ticker, date);
+
+                       """)
+        
+    print(f'База подготовлена: {database_path}')
 
     
 if __name__ == '__main__':

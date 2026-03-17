@@ -1,17 +1,24 @@
- 
-Baseline Logistic Regression
-Train rows: 697491
-Val rows: 166880
-Test rows: 164923
+
+            
+            ==== Baseline Logistic Regression ====
+            
+Train rows: 418132
+Val rows: 109802
+Test rows: 105490
 
 
-Validation - Accuracy: 0.5055
-Balanced accuracy: 0.510914
-F1: 0.3784
-AUC-ROC: 0.5130
+            ==== Validation metrics ====
+
+Validation - Accuracy: 0.5299
+Balanced accuracy: 0.527169
+F1: 0.5871
+AUC-ROC: 0.5348
 
 
-Test - Accuracy: 0.4821
-Balanced accuracy: 0.5065
-F1: 0.3617
-AUC-ROC: 0.5093
+            ==== Test metrics ====
+
+Test - Accuracy: 0.5039
+Balanced accuracy: 0.4916
+F1: 0.5716
+AUC-ROC: 0.4932
+
