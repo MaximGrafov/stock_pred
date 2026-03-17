@@ -111,3 +111,7 @@ def require_config_value(config: Mapping[str, Any], key_path: str) -> Any:
         raise KeyError(f'В файле config пустой ключ: {key_path}')
     
     return current
+
+
+def show_info():
+    print(f'Best threshold on VAL: {best_threshold:.2f}, accuarcy: {best_bal_acc:.4f}')

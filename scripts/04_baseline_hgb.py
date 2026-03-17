@@ -16,7 +16,10 @@ from sklearn.metrics import (
     accuracy_score, balanced_accuracy_score,
     f1_score, roc_auc_score
     )
-from additional_functions import print_eval_block, write_metrics_reports
+from additional_functions import (
+    print_eval_block, write_metrics_reports,
+    show_info
+    )
 
 
 root = Path(__file__).resolve().parents[1]
@@ -138,7 +141,7 @@ for thr in np.arange(0.30, 0.71, 0.01):
         best_bal_acc = float(bal_acc)
         best_threshold = float(thr)
 
-print(f'Best threshold on VAL: {best_threshold:.2f}, balanced_accuary: {best_bal_acc:.4f}')
+show_info(best_threshold, best_bal_acc)
 
 
 def evalute(name: str, x_part: pd.DataFrame, y_part: pd.Series, threshold: float = 0.5):

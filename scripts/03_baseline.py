@@ -16,22 +16,25 @@ from sklearn.metrics import (
     )
 from additional_functions import (
     print_eval_block, write_metrics_reports,
-    load_config, require_config_value
+    load_config, require_config_value, show_info
     )
-
 
 
 project_root = Path(__file__).resolve().parents[1]
 config = load_config(project_root)
 
-dataset_path = require_config_value(config, 'paths.dataset_parquet')
-reports_dir = require_config_value(config, 'paths.report_dir')
-reports_dir.mkdir(exist_ok=True)
+
+dataset_path = project_root / Path(require_config_value(config, 'paths.dataset_parquet'))
+reports_path = project_root / Path(require_config_value(config, 'paths.report_dir'))
+baseline_path = project_root / Path(require_config_value(config, 'paths.baseline_report'))
+reports_path.parent.mkdir(parents=True, exist_ok=True)
+baseline_path.mkdir(parents=True, exist_ok=True)
 
 _ = require_config_value(config, 'features.baseline')
 
+models_parametrs = require_config_value(config, 'models.logistic_regression')
+values_threshold = require_config_value(config, 'threshold_search.logistic_regression_baseline')
 
-mod = require_config_value(config, 'models.logistic_regression')
 
 df = pd.read_parquet(dataset_path)
 df['date'] = pd.to_datetime(df['date'])
@@ -100,9 +103,9 @@ preprocessor = ColumnTransformer(
 clf = Pipeline(
     steps=[
         ('preprocessor', preprocessor),
-        ('model', LogisticRegression(max_iter=mod[0],
-                                     n_jobs=mod[1],
-                                     class_weight=mod[2]
+        ('model', LogisticRegression(max_iter=models_parametrs['maximum_iterations'],
+                                     n_jobs=models_parametrs['number_of_jobs'],
+                                     class_weight=models_parametrs['class_weight_strategy']
                                     )
                                 )
                             ]
@@ -116,15 +119,18 @@ val_proba = clf.predict_proba(x_val)[:, 1]
 best_threshold = 0.50
 best_bal_acc = 0.0
 
-for thr in np.arange(0.35, 0.66, 0.01):
+for thr in np.arange(values_threshold['start_threshold'],
+                     values_threshold['stop_threshold'],
+                     values_threshold['step_threshold']
+                    ):
     val_pred = (val_proba >= thr).astype(int)
     bal_acc = balanced_accuracy_score(y_val, val_pred)
     
     if bal_acc > best_bal_acc:
         best_bal_acc = float(bal_acc)
         best_threshold = float(thr)
-        
-print(f'Best threshold on VAL: {best_threshold:.2f}, accuarcy: {best_bal_acc:.4f}')
+
+show_info(best_threshold, best_bal_acc)
 
 
 def evaluate(name: str, x_part: pd.DataFrame, y_part: pd.Series, threshold: float = 0.5):
@@ -171,9 +177,8 @@ test_metrics_map = {
     }
 
 
-report_path = reports_dir / 'baseline_metrics.txt'
 write_metrics_reports(
-    report_path=report_path,
+    report_path=reports_path,
     model_name='Baseline Logistic Regression',
     train_rows=len(x_train),
     val_rows=len(x_val),

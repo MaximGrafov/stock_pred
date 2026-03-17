@@ -1,6 +1,8 @@
 paths:
     database_file: data/main_db.db
     dataset_parquet: data/dataset.parquet
+    baseline_report: reports/baseline_metrics.txt
+    hgb_report: reports/hgb_metrics.txt
     report_dir: reports
     scripts_dir: scripts
 
