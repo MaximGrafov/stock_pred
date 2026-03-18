@@ -4,6 +4,7 @@
 import pandas as pd
 import numpy as np
 
+from datetime import datetime as dt
 from pathlib import Path
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -24,26 +25,32 @@ project_root = Path(__file__).resolve().parents[1]
 config = load_config(project_root)
 
 
-dataset_path = project_root / Path(require_config_value(config, 'paths.dataset_parquet'))
-reports_path = project_root / Path(require_config_value(config, 'paths.report_dir'))
-baseline_path = project_root / Path(require_config_value(config, 'paths.baseline_report'))
-reports_path.parent.mkdir(parents=True, exist_ok=True)
-baseline_path.mkdir(parents=True, exist_ok=True)
-
-_ = require_config_value(config, 'features.baseline')
-
-models_parametrs = require_config_value(config, 'models.logistic_regression')
-values_threshold = require_config_value(config, 'threshold_search.logistic_regression_baseline')
+dataset_file = project_root / Path(require_config_value(config, 'paths.dataset_parquet'))
+report_file = project_root / Path(require_config_value(config, 'paths.baseline_report'))
 
 
-df = pd.read_parquet(dataset_path)
+features = require_config_value(config, 'features')
+model_values = require_config_value(config, 'models.logistic_regression')
+threshold_parametrs = require_config_value(config, 'threshold_search')
+values_threshold = threshold_parametrs['logistic_regression_baseline']
+
+split_values = require_config_value(config, 'split')
+
+training_ratio, validation_ratio = float(split_values['training_ratio']), float(split_values['validation_ratio'])
+baseline_features = features['baseline']
+categorical_feature_value = features['categorical']
+validation_end_ratio = training_ratio + validation_ratio
+
+
+
+df = pd.read_parquet(dataset_file)
 df['date'] = pd.to_datetime(df['date'])
 
 if 'target' not in df.columns:
     raise ValueError('Отсутствует колонка target в датасете')
 
 
-feature_columns = _.copy()
+feature_columns = baseline_features.copy()
 
 for column in feature_columns:
     if column not in df.columns:
@@ -55,8 +62,8 @@ unique_dates = df['date'].sort_values().unique()
 
 n_dates = len(unique_dates)
 
-cut1 = int(n_dates * 0.70)
-cut2 = int(n_dates * 0.85)
+cut1 = int(n_dates * training_ratio)
+cut2 = int(n_dates * validation_end_ratio)
 
 train_end_date = unique_dates[cut1 - 1]
 val_end_date = unique_dates[cut2 - 1]
@@ -71,9 +78,9 @@ x_val, y_val     = val_df[feature_columns], val_df['target']
 x_test, y_test   = test_df[feature_columns], test_df['target']
     
 
-numeric_features = [col for col in _ if col != 'ticker']
+numeric_features = [col for col in feature_columns if col != 'ticker']
 
-categorical_features = ['ticker']
+categorical_features = categorical_feature_value
 
 
 numeric_transformer = Pipeline(
@@ -103,9 +110,9 @@ preprocessor = ColumnTransformer(
 clf = Pipeline(
     steps=[
         ('preprocessor', preprocessor),
-        ('model', LogisticRegression(max_iter=models_parametrs['maximum_iterations'],
-                                     n_jobs=models_parametrs['number_of_jobs'],
-                                     class_weight=models_parametrs['class_weight_strategy']
+        ('model', LogisticRegression(max_iter=model_values['maximum_iterations'],
+                                     n_jobs=model_values['number_of_jobs'],
+                                     class_weight=model_values['class_weight_strategy']
                                     )
                                 )
                             ]
@@ -116,7 +123,7 @@ clf.fit(x_train, y_train)
 
 val_proba = clf.predict_proba(x_val)[:, 1]
 
-best_threshold = 0.50
+best_threshold = threshold_parametrs['best_threshold']
 best_bal_acc = 0.0
 
 for thr in np.arange(values_threshold['start_threshold'],
@@ -147,11 +154,11 @@ def evaluate(name: str, x_part: pd.DataFrame, y_part: pd.Series, threshold: floa
     print_eval_block(
         name=name,
         threshold=threshold,
-        accuracy=acc,
-        balanced_accuracy=bal_acc,
-        f1=f1,
-        auc_roc=auc,
-        positive_rate=positive_rate,
+        accuracy=float(acc),
+        balanced_accuracy=float(bal_acc),
+        f1=float(f1),
+        auc_roc=float(auc),
+        positive_rate=float(positive_rate),
         y_part=y_part,
         pred=pred
         )
@@ -176,9 +183,11 @@ test_metrics_map = {
     'auc_roc': float(test_metrics[3])
     }
 
-
+trial_report_path = project_root / Path(f"{require_config_value(config, 'paths.trial_path')}{dt.now().strftime('%Y-%m-%d__%H-%M-%S')}_baseline_report.txt")
 write_metrics_reports(
-    report_path=reports_path,
+    report_path=report_file,
+    trial_report_path=trial_report_path,
+    used_parametrs=model_values,
     model_name='Baseline Logistic Regression',
     train_rows=len(x_train),
     val_rows=len(x_val),

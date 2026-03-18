@@ -1,9 +1,8 @@
-# 04_baseline_hgb.py
+# 05_lightgbm.py
 # 
 
-
-import numpy as np
 import pandas as pd
+import numpy as np
 
 from datetime import datetime as dt
 from pathlib import Path
@@ -11,7 +10,8 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.impute import SimpleImputer
-from sklearn.ensemble import HistGradientBoostingClassifier
+from lightgbm import LGBMClassifier
+
 from sklearn.metrics import (
     accuracy_score, balanced_accuracy_score,
     f1_score, roc_auc_score
@@ -25,9 +25,8 @@ from additional_functions import (
 project_root = Path(__file__).resolve().parents[1]
 config = load_config(project_root)
 
-
 data_file = project_root / Path(require_config_value(config, 'paths.dataset_parquet'))
-model_values = require_config_value(config, 'models.high_gradient_boosting')
+model_values = require_config_value(config, 'models.light_gradient_boosting')
 
 split_values = require_config_value(config, 'split')
 training_ratio = float(split_values['training_ratio'])
@@ -35,10 +34,10 @@ validation_ratio = float(split_values['validation_ratio'])
 validation_end_ratio = training_ratio + validation_ratio
 
 features = require_config_value(config, 'features')
-features_columns = features['high_gradient_boosting']
+features_columns = features['light_gradient_boosting']
 
 threshold_parametrs = require_config_value(config, 'threshold_search')
-values_threshold = threshold_parametrs['high_gradient_boosting']
+values_threshold = threshold_parametrs['light_gradient_boosting']
 
 
 df = pd.read_parquet(data_file)
@@ -49,6 +48,7 @@ for column in features_columns + ['target']:
     if column not in df.columns:
         raise ValueError(f'Колонка {column} отсутствует')
     
+    
 numeric_columns = [col for col in features_columns if col != 'ticker']
 
 df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric, errors='coerce')
@@ -58,21 +58,21 @@ df = df.dropna(subset=numeric_columns + ['target']).copy()
 
 
 df = df.sort_values('date').reset_index(drop=True)
-unique_dates = df['date'].unique()
-n_dates = len(unique_dates)
+unique_date = df['date'].unique()
+n_dates = len(unique_date)
 
 
 cut1 = int(n_dates * training_ratio)
 cut2 = int(n_dates * validation_end_ratio)
 
-
-train_end = unique_dates[cut1 - 1]
-val_end = unique_dates[cut2 - 1]
+train_end = unique_date[cut1 - 1]
+val_end = unique_date[cut2 - 1]
 
 
 train_df = df[df['date'] <= train_end].copy()
 val_df = df[(df['date'] > train_end) & (df['date'] <= val_end)].copy()
 test_df = df[df['date'] > val_end].copy()
+
 
 x_train, y_train = train_df[features_columns], train_df['target']
 x_val, y_val = val_df[features_columns], val_df['target']
@@ -82,10 +82,11 @@ x_test, y_test = test_df[features_columns], test_df['target']
 numeric_features = numeric_columns.copy()
 categorical_features = features['categorical']
 
+
 numeric_transformer = Pipeline(
     steps=[
         ('imputer', SimpleImputer(strategy='median'))
-          ]
+    ]
 )
 
 
@@ -94,38 +95,42 @@ categorical_transformer = Pipeline(
         ('imputer', SimpleImputer(strategy='most_frequent')),
         ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False))
     ]
-)
+    )
 
 
-preprocessor = ColumnTransformer(
+preproccesor = ColumnTransformer(
     transformers=[
         ('num', numeric_transformer, numeric_features),
         ('cat', categorical_transformer, categorical_features)
-        ], sparse_threshold=0.0
-)
+    ], sparse_threshold=0.0)
 
 
-model = HistGradientBoostingClassifier(
+model = LGBMClassifier(
     learning_rate=model_values['learning_rate'],
-    max_depth=model_values['maximum_tree_depth'],
-    max_iter=model_values['maximum_iterations'],
-    min_samples_leaf=model_values['minimum_samples_per_leaf'],
-    random_state=model_values['random_state_seed']
-)
+    n_estimators=model_values['n_estimators'],
+    num_leaves=model_values['num_leaves'],
+    min_child_samples=model_values['min_child_samples'],
+    random_state=model_values['random_state'],
+    subsample=model_values['subsample'],
+    colsample_bytree=model_values['colsample_bytree'],
+    reg_alpha=model_values['reg_alpha'],
+    reg_lambda=model_values['reg_lambda'],
+    max_depth=model_values['max_depth']
+    )
 
 
 clf = Pipeline(
     steps=[
-        ('preprocessor', preprocessor),
+        ('preproccesor', preproccesor),
         ('model', model)
     ]
-)
+    )
 
 
 if np.isinf(x_train[numeric_features].to_numpy()).any():
     raise ValueError('В x_train остались inf после очистки')
 
-if np.isnan(x_train[numeric_features].to_numpy()).any():
+if np.isnan(x_train[numeric_columns].to_numpy()).any():
     raise ValueError('В x_train остались NaN после очистки')
 
 clf.fit(x_train, y_train)
@@ -137,14 +142,14 @@ best_bal_acc = 0.0
 
 
 for thr in np.arange(values_threshold['start_threshold'],
-                     values_threshold['stop_threshold'],
-                     values_threshold['step_threshold']):
+                      values_threshold['stop_threshold'],
+                      values_threshold['step_threshold']):
     pred = (val_proba >= thr).astype(int)
     bal_acc = balanced_accuracy_score(y_val, pred)
     if bal_acc > best_bal_acc:
         best_bal_acc = float(bal_acc)
         best_threshold = float(thr)
-
+        
 show_info(best_threshold, best_bal_acc)
 
 
@@ -176,7 +181,7 @@ def evaluate(name: str,
         )
     
     return acc, bal_acc, f1, auc
-    
+
 
 val_metrics = evaluate('Validation', x_val, y_val, best_threshold)
 test_metrics = evaluate('Test', x_test, y_test, best_threshold)
@@ -195,14 +200,13 @@ test_metrics_map = {
     'auc_roc': float(test_metrics[3])
     }
 
-
-report_path = project_root / Path(require_config_value(config, 'paths.hgb_report'))
-trial_report_path = project_root / Path(f"{require_config_value(config, 'paths.trial_path')}{dt.now().strftime('%Y-%m-%d__%H-%M-%S')}_baseline_hgb_report.txt")
+last_report_path = project_root / Path(require_config_value(config, 'paths.lightgbm_report'))
+trial_report_path = project_root / Path(f"{require_config_value(config, 'paths.trial_path')}{dt.now().strftime('%Y-%m-%d__%H-%M-%S')}_lightgbm_report.txt")
 write_metrics_reports(
-    report_path=report_path,
+    report_path=last_report_path,
     trial_report_path=trial_report_path,
+    model_name='Light Gradient Boosting',
     used_parametrs=model_values,
-    model_name='Baseline HighGradientBoosting',
     train_rows=len(x_train),
     val_rows=len(x_val),
     test_rows=len(x_test),

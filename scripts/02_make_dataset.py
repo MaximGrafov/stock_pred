@@ -88,19 +88,20 @@ with sqlite3.connect(database_path) as connect:
 
 
     future_close = group['close'].shift(-target_horizon_days)
-    df['future_ret_5'] = future_close / df['close'] - 1.0
+    value_future_ret = f'future_ret_{target_horizon_days}'
+    df[value_future_ret] = future_close / df['close'] - 1.0
 
-    df = df[df['future_ret_5'].abs() >= float(target_absolute_minimum_return)].copy()
+    df = df[df[value_future_ret].abs() >= float(target_absolute_minimum_return)].copy()
 
-    df['target'] = (df['future_ret_5'] > 0).astype(int)
+    df['target'] = (df[value_future_ret] > 0).astype(int)
 
 
     numeric_columns, feature_columns= _features.copy(), _features.copy()    
 
     df[numeric_columns] = df[numeric_columns].replace([np.inf, -np.inf], np.nan)
 
-    df = df.dropna(subset=feature_columns + ['target', 'future_ret_5']).copy()
-    df = df.drop(columns=['future_ret_5'])
+    df = df.dropna(subset=feature_columns + ['target', value_future_ret]).copy()
+    df = df.drop(columns=[value_future_ret])
 
     out_parquet = project_root / dataset_parquet
     df.to_parquet(out_parquet, index=False)
@@ -108,6 +109,8 @@ with sqlite3.connect(database_path) as connect:
 
 print(f"""
       Программа выполнена!
+      Горизон target (дней): {target_horizon_days}
+      Порог модуля доходности: {target_absolute_minimum_return}
       Всего строк: {len(df)}
       Всего колонок: {len(df.columns)}
       Доля target=1: {round(df['target'].mean(), 4)}

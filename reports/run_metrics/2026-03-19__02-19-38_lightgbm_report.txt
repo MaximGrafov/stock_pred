@@ -1,0 +1,38 @@
+
+            
+            ==== Light Gradient Boosting ====
+            
+Train rows: 418132
+Val rows: 109802
+Test rows: 105490
+
+
+            ==== Used parametrs ====
+            
+learning_rate: 0.03
+n_estimators: 500
+num_leaves: 31
+min_child_samples: 100
+random_state: 42
+subsample: 0.8
+colsample_bytree: 0.8
+reg_alpha: 0.0
+reg_lambda: 0.0
+max_depth: -1
+
+
+            ==== Validation metrics ====
+
+Validation - Accuracy: 0.5316
+Balanced accuracy: 0.5305
+F1: 0.5590
+AUC-ROC: 0.5392
+
+
+            ==== Test metrics ====
+
+Test - Accuracy: 0.4936
+Balanced accuracy: 0.4942
+F1: 0.5356
+AUC-ROC: 0.4951
+

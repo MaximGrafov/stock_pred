@@ -7,10 +7,19 @@ Val rows: 109802
 Test rows: 105490
 
 
+            ==== Used parametrs ====
+            
+learning_rate: 0.05
+maximum_tree_depth: 6
+maximum_iterations: 400
+minimum_samples_per_leaf: 100
+random_state_seed: 42
+
+
             ==== Validation metrics ====
 
 Validation - Accuracy: 0.5304
-Balanced accuracy: 0.530395
+Balanced accuracy: 0.5304
 F1: 0.5358
 AUC-ROC: 0.5392
 

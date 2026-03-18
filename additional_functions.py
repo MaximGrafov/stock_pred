@@ -6,6 +6,7 @@ import yaml
 import pandas as pd
 import numpy as np
 
+from datetime import datetime
 from typing import Any, Mapping
 from pathlib import Path
 from sklearn.metrics import classification_report, confusion_matrix
@@ -47,6 +48,8 @@ Predicted class 1 share: {positive_rate:.4f}
     
 def write_metrics_reports(
     report_path: str | Path,
+    trial_report_path: str | Path,
+    used_parametrs: dict,
     model_name: str,
     train_rows: int,
     val_rows: int,
@@ -55,18 +58,29 @@ def write_metrics_reports(
     test_metrics: Mapping[str, float]    
     ) -> None:
     
-    path = Path(report_path)
-    path.parent.mkdir(parents=True, exist_ok=True)
+    path_report = Path(report_path)
+    path_report.parent.mkdir(parents=True, exist_ok=True)
     
-    with path.open('w', encoding='utf-8') as file_out:
+    path_trial_report = Path(trial_report_path)
+    path_trial_report.parent.mkdir(parents=True, exist_ok=True)
     
-        file_out.write(f"""
+    model_parametrs = chr(10).join(f'{key}: {value}' for key, value in used_parametrs.items())
+        
+    with path_report.open('w', encoding='utf-8') as last_report_file,\
+         path_trial_report.open('w+', encoding='utf-8') as trial_report_file:
+
+        writer_text = f"""
             
             ==== {model_name} ====
             
 Train rows: {train_rows}
 Val rows: {val_rows}
 Test rows: {test_rows}
+
+
+            ==== Used parametrs ====
+            
+{model_parametrs}
 
 
             ==== Validation metrics ====
@@ -84,10 +98,15 @@ Balanced accuracy: {test_metrics['balanced_accuracy']:.4f}
 F1: {test_metrics['f1']:.4f}
 AUC-ROC: {test_metrics['auc_roc']:.4f}
 
-""")
-    
-        print(f'Report saved: {report_path}')
+"""
         
+        last_report_file.write(writer_text)
+        trial_report_file.write(writer_text)
+    
+        print(f'Reports saved: \n{report_path} \n{trial_report_path}')
+        
+        
+       
         
 def load_config(project_root: Path) -> dict:
     config_path = project_root / 'config.yaml'
@@ -113,5 +132,5 @@ def require_config_value(config: Mapping[str, Any], key_path: str) -> Any:
     return current
 
 
-def show_info():
-    print(f'Best threshold on VAL: {best_threshold:.2f}, accuarcy: {best_bal_acc:.4f}')
+def show_info(threshold, bal_acc):
+    print(f'Best threshold on VAL: {threshold:.2f}, accuarcy: {bal_acc:.4f}')

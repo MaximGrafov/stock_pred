@@ -1,0 +1,33 @@
+
+            
+            ==== Baseline HighGradientBoosting ====
+            
+Train rows: 469824
+Val rows: 120854
+Test rows: 116577
+
+
+            ==== Used parametrs ====
+            
+learning_rate: 0.05
+maximum_tree_depth: 6
+maximum_iterations: 400
+minimum_samples_per_leaf: 100
+random_state_seed: 42
+
+
+            ==== Validation metrics ====
+
+Validation - Accuracy: 0.5104
+Balanced accuracy: 0.5155
+F1: 0.4145
+AUC-ROC: 0.5201
+
+
+            ==== Test metrics ====
+
+Test - Accuracy: 0.4723
+Balanced accuracy: 0.5061
+F1: 0.3782
+AUC-ROC: 0.5063
+
