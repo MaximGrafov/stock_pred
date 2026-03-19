@@ -4,7 +4,6 @@
 import pandas as pd
 import numpy as np
 
-from datetime import datetime as dt
 from pathlib import Path
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -183,10 +182,8 @@ test_metrics_map = {
     'auc_roc': float(test_metrics[3])
     }
 
-trial_report_path = project_root / Path(f"{require_config_value(config, 'paths.trial_path')}{dt.now().strftime('%Y-%m-%d__%H-%M-%S')}_baseline_report.txt")
 write_metrics_reports(
     report_path=report_file,
-    trial_report_path=trial_report_path,
     used_parametrs=model_values,
     model_name='Baseline Logistic Regression',
     train_rows=len(x_train),

@@ -20,6 +20,7 @@ reg_alpha: 0.0
 reg_lambda: 0.0
 max_depth: -1
 
+['AAPL', 'MSFT', 'NVDA', 'AMZN', 'GOOGL', 'GOOG', 'META', 'TSLA', 'JPM', 'BAC', 'WMT', 'COST', 'HD', 'PG', 'KO', 'PEP', 'XOM', 'CVX', 'UNH', 'JNJ', 'ABBV', 'MRK', 'AVGO', 'QCOM', 'ORCL']
 
             ==== Validation metrics ====
 

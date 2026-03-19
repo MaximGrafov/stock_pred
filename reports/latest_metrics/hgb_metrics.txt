@@ -15,6 +15,7 @@ maximum_iterations: 400
 minimum_samples_per_leaf: 100
 random_state_seed: 42
 
+['AAPL', 'MSFT', 'NVDA', 'AMZN', 'GOOGL', 'GOOG', 'META', 'TSLA', 'JPM', 'BAC', 'WMT', 'COST', 'HD', 'PG', 'KO', 'PEP', 'XOM', 'CVX', 'UNH', 'JNJ', 'ABBV', 'MRK', 'AVGO', 'QCOM', 'ORCL']
 
             ==== Validation metrics ====
 

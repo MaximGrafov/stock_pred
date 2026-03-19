@@ -4,7 +4,6 @@
 import pandas as pd
 import numpy as np
 
-from datetime import datetime as dt
 from pathlib import Path
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -201,10 +200,8 @@ test_metrics_map = {
     }
 
 last_report_path = project_root / Path(require_config_value(config, 'paths.lightgbm_report'))
-trial_report_path = project_root / Path(f"{require_config_value(config, 'paths.trial_path')}{dt.now().strftime('%Y-%m-%d__%H-%M-%S')}_lightgbm_report.txt")
 write_metrics_reports(
     report_path=last_report_path,
-    trial_report_path=trial_report_path,
     model_name='Light Gradient Boosting',
     used_parametrs=model_values,
     train_rows=len(x_train),
