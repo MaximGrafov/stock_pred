@@ -114,7 +114,8 @@ model = LGBMClassifier(
     colsample_bytree=model_values['colsample_bytree'],
     reg_alpha=model_values['reg_alpha'],
     reg_lambda=model_values['reg_lambda'],
-    max_depth=model_values['max_depth']
+    max_depth=model_values['max_depth'],
+    verbosity=model_values['verbosity']
     )
 
 

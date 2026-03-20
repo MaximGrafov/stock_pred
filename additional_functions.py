@@ -139,3 +139,10 @@ def require_config_value(config: Mapping[str, Any], key_path: str) -> Any:
 
 def show_info(threshold, bal_acc):
     print(f'Best threshold on VAL: {threshold:.2f}, accuarcy: {bal_acc:.4f}')
+
+
+def format_tickers(tickers: list[str], count_per_line: int):
+
+    sorted(set(tickers))
+
+    for ticker in tickers:

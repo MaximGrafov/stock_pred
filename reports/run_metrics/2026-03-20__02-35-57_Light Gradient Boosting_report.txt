@@ -11,30 +11,29 @@ Test rows: 6282
             
 learning_rate: 0.03
 n_estimators: 500
-num_leaves: 31
-min_child_samples: 50
+num_leaves: 15
+min_child_samples: 300
 random_state: 42
 subsample: 0.8
 colsample_bytree: 0.8
-reg_alpha: 0.1
-reg_lambda: 0.5
-max_depth: 6
-verbosity: -1
+reg_alpha: 0.5
+reg_lambda: 1.0
+max_depth: 4
 
 ['AAPL', 'MSFT', 'NVDA', 'AMZN', 'GOOGL', 'META', 'JPM', 'BAC', 'XOM', 'CVX', 'JNJ', 'UNH', 'PG', 'KO', 'PEP', 'HD', 'COST', 'WMT', 'AVGO', 'QCOM']
 
             ==== Validation metrics ====
 
-Validation - Accuracy: 0.4863
-Balanced accuracy: 0.4898
-F1: 0.4980
-AUC-ROC: 0.4759
+Validation - Accuracy: 0.4797
+Balanced accuracy: 0.5009
+F1: 0.3999
+AUC-ROC: 0.4912
 
 
             ==== Test metrics ====
 
-Test - Accuracy: 0.5013
-Balanced accuracy: 0.5291
-F1: 0.4980
-AUC-ROC: 0.5358
+Test - Accuracy: 0.4809
+Balanced accuracy: 0.5287
+F1: 0.4258
+AUC-ROC: 0.5337
 

@@ -19,7 +19,6 @@ colsample_bytree: 0.8
 reg_alpha: 0.1
 reg_lambda: 0.5
 max_depth: 6
-verbosity: -1
 
 ['AAPL', 'MSFT', 'NVDA', 'AMZN', 'GOOGL', 'META', 'JPM', 'BAC', 'XOM', 'CVX', 'JNJ', 'UNH', 'PG', 'KO', 'PEP', 'HD', 'COST', 'WMT', 'AVGO', 'QCOM']
 
