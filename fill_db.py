@@ -16,7 +16,7 @@ project_root = Path(__file__).resolve().parent
 config = load_config(project_root)
 
 
-tickers = require_config_value(config, 'tickers.all_tickers')
+tickers = require_config_value(config, 'tickers.all_tickers_1')
 if not isinstance(tickers, list) or not tickers:
     raise ValueError('tickers.all_tickers должен быть не пустым списком')
 

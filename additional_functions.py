@@ -68,6 +68,7 @@ def write_metrics_reports(
     path_trial_report.parent.mkdir(parents=True, exist_ok=True)
     
     model_parametrs = chr(10).join(f'{key}: {value}' for key, value in used_parametrs.items())
+    dataset_parametrs = chr(10).join(f'{key}: {value}' for key, value in require_config_value(config, 'dataset'))
     
         
     with path_report.open('w', encoding='utf-8') as last_report_file,\
@@ -86,7 +87,9 @@ Test rows: {test_rows}
             
 {model_parametrs}
 
-{require_config_value(config, 'tickers.all_tickers')}
+{dataset_parametrs}
+
+tickers: {format_tickers(require_config_value(config, 'tickers.all_tickers'), 5)}
 
             ==== Validation metrics ====
 
@@ -109,8 +112,6 @@ AUC-ROC: {test_metrics['auc_roc']:.4f}
         trial_report_file.write(writer_text)
     
         print(f'Reports saved: \n{report_path} \n{path_trial_report}')
-        
-        
        
         
 def load_config(project_root: Path) -> dict:
@@ -145,4 +146,6 @@ def format_tickers(tickers: list[str], count_per_line: int):
 
     sorted(set(tickers))
 
-    for ticker in tickers:
+    split_tickers = [tickers[num: num + count_per_line] for num in range(0, len(tickers), count_per_line)]
+    
+    return split_tickers
