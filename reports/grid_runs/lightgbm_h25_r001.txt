@@ -1,0 +1,53 @@
+
+            
+            ==== Light Gradient Boosting Grid Search ====
+            
+Train rows: 33891
+Val rows: 7596
+Test rows: 7441
+
+
+            ==== Used parametrs ====
+            
+colsample_bytree: 0.8
+learning_rate: 0.03
+max_depth: 4
+min_child_samples: 20
+n_estimators: 800
+num_leaves: 31
+random_state: 42
+reg_alpha: 0.1
+reg_lambda: 0.0
+subsample: 0.8
+verbosity: -1
+
+returns_windows: [1, 3, 5, 10]
+moving_average_windows: [5, 10, 20]
+volume_standard_deviation_window: 10
+volume_moving_average_window: 20
+returns_clip_range: [-0.2, 0.2]
+target_horizon_days: 25
+target_absolute_minimum_return: 0.01
+
+tickers: 
+
+AAPL, AMZN, BAC, COST, CVX
+GOOGL, JPM, KO, META, PEP
+PG, UNH, WMT, XOM
+
+
+            ==== Validation metrics ====
+
+Validation - Accuracy: 0.5240
+Balanced accuracy: 0.5105
+F1: 0.5931
+AUC-ROC: 0.4951
+
+
+            ==== Test metrics ====
+
+Test - Accuracy: 0.5357
+Balanced accuracy: 0.5482
+F1: 0.5710
+AUC-ROC: 0.5464
+

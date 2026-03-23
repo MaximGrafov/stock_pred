@@ -10,7 +10,7 @@ from typing import Any
 from sklearn.model_selection import ParameterGrid
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, FunctionTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import HistGradientBoostingClassifier
@@ -186,6 +186,12 @@ def run_grid(
     
     x_train, y_train, x_val, y_val, x_test, y_test, numeric_columns = prepare_xy(feature_columns)
     preprocessor = build_prepocessor(numeric_columns, use_scaler)
+
+    to_numpy = FunctionTransformer(
+             lambda x: x.to_numpy() if hasattr(x, 'to_numpy') else x,
+             accept_sparse=True
+            )
+    
     threshold_cfg = threshold_params[threshold_key]
     
     
@@ -198,10 +204,12 @@ def run_grid(
     print(f'\n[{model_name}] Вариантов: {len(all_params)}')
     
     for num, params in enumerate(all_params, start=1):
+
         model = model_factory(params)
         clf = Pipeline(
             steps=[
                 ('preprocessor', preprocessor),
+                ('to_numpy', to_numpy),
                 ('model', model)
                 ]
             )

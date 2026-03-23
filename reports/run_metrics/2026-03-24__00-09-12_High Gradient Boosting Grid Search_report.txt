@@ -1,0 +1,47 @@
+
+            
+            ==== High Gradient Boosting Grid Search ====
+            
+Train rows: 33891
+Val rows: 7596
+Test rows: 7441
+
+
+            ==== Used parametrs ====
+            
+learning_rate: 0.05
+maximum_iterations: 600
+maximum_tree_depth: 8
+minimum_samples_per_leaf: 50
+random_state_seed: 42
+
+returns_windows: [1, 3, 5, 10]
+moving_average_windows: [5, 10, 20]
+volume_standard_deviation_window: 10
+volume_moving_average_window: 20
+returns_clip_range: [-0.2, 0.2]
+target_horizon_days: 25
+target_absolute_minimum_return: 0.01
+
+tickers: 
+
+AAPL, AMZN, BAC, COST, CVX
+GOOGL, JPM, KO, META, PEP
+PG, UNH, WMT, XOM
+
+
+            ==== Validation metrics ====
+
+Validation - Accuracy: 0.4781
+Balanced accuracy: 0.5026
+F1: 0.4071
+AUC-ROC: 0.4887
+
+
+            ==== Test metrics ====
+
+Test - Accuracy: 0.4546
+Balanced accuracy: 0.5281
+F1: 0.3408
+AUC-ROC: 0.5442
+
