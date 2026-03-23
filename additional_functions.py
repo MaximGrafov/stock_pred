@@ -12,7 +12,6 @@ from pathlib import Path
 from sklearn.metrics import classification_report, confusion_matrix
 
 
-
 def print_eval_block(
     name: str,
     threshold: float,
@@ -55,11 +54,10 @@ def write_metrics_reports(
     val_rows: int,
     test_rows: int,
     val_metrics: Mapping[str, float],
-    test_metrics: Mapping[str, float]    
+    test_metrics: Mapping[str, float],
+    report_tickers: list[str]
     ) -> None:
-    
-    project_root = Path(__file__).resolve().parent
-    config = load_config(project_root)
+
     
     path_report = Path(report_path)
     path_report.parent.mkdir(parents=True, exist_ok=True)
@@ -68,7 +66,7 @@ def write_metrics_reports(
     path_trial_report.parent.mkdir(parents=True, exist_ok=True)
     
     model_parametrs = chr(10).join(f'{key}: {value}' for key, value in used_parametrs.items())
-    dataset_parametrs = chr(10).join(f'{key}: {value}' for key, value in require_config_value(config, 'dataset'))
+    dataset_parametrs = chr(10).join(f'{key}: {value}' for key, value in require_config_value(config, 'dataset').items())
     
         
     with path_report.open('w', encoding='utf-8') as last_report_file,\
@@ -89,7 +87,10 @@ Test rows: {test_rows}
 
 {dataset_parametrs}
 
-tickers: {format_tickers(require_config_value(config, 'tickers.all_tickers'), 5)}
+tickers: 
+
+{format_tickers(report_tickers, 5)}
+
 
             ==== Validation metrics ====
 
@@ -137,6 +138,9 @@ def require_config_value(config: Mapping[str, Any], key_path: str) -> Any:
     
     return current
 
+project_root = Path(__file__).resolve().parent
+config = load_config(project_root)
+
 
 def show_info(threshold, bal_acc):
     print(f'Best threshold on VAL: {threshold:.2f}, accuarcy: {bal_acc:.4f}')
@@ -144,8 +148,36 @@ def show_info(threshold, bal_acc):
 
 def format_tickers(tickers: list[str], count_per_line: int):
 
-    sorted(set(tickers))
+    unique_sorted = sorted(set(tickers))
 
-    split_tickers = [tickers[num: num + count_per_line] for num in range(0, len(tickers), count_per_line)]
+    if not unique_sorted:
+        return 'empty'
+
+    split_tickers = [', '.join(unique_sorted[num: num + count_per_line]) for num in range(0, len(unique_sorted), count_per_line)]
     
-    return split_tickers
+    return '\n'.join(split_tickers)
+
+
+def choice_tickers() -> list[str]:
+    
+    print(
+f"""
+Какой список тикеров использовать:
+
+1. Упрощенный (20 тикеров);
+2. Полный (388 тикеров).
+""")
+    
+    choose_tickers = int(input())
+    used_tickers = None
+
+    if choose_tickers == 1:
+        used_tickers = require_config_value(config, 'tickers.all_tickers')
+    
+    elif choose_tickers == 2:
+        used_tickers = require_config_value(config, 'tickers.all_tickers_1')
+    
+    else:
+        raise ValueError('Неверный выбор варианта!')
+    
+    return used_tickers

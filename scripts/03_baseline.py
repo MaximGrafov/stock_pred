@@ -81,6 +81,8 @@ numeric_features = [col for col in feature_columns if col != 'ticker']
 
 categorical_features = categorical_feature_value
 
+report_tickers = sorted(train_df['ticker'].dropna().astype(str).unique().tolist())
+
 
 numeric_transformer = Pipeline(
     steps=[
@@ -190,5 +192,6 @@ write_metrics_reports(
     val_rows=len(x_val),
     test_rows=len(x_test),
     val_metrics=val_metrics_map,
-    test_metrics=test_metrics_map
+    test_metrics=test_metrics_map,
+    report_tickers=report_tickers
     )

@@ -2,9 +2,9 @@
             
             ==== Light Gradient Boosting ====
             
-Train rows: 19657
-Val rows: 4889
-Test rows: 4876
+Train rows: 489940
+Val rows: 126294
+Test rows: 122131
 
 
             ==== Used parametrs ====
@@ -32,23 +32,23 @@ target_absolute_minimum_return: 0.03
 tickers: 
 
 AAPL, AMZN, AVGO, BAC, COST
-CVX, GOOGL, HD, JPM, KO
-MSFT, PEP, PG, UNH, WMT
-XOM
+CVX, GOOGL, HD, JNJ, JPM
+KO, META, MSFT, NVDA, PEP
+PG, QCOM, UNH, WMT, XOM
 
 
             ==== Validation metrics ====
 
-Validation - Accuracy: 0.5498
-Balanced accuracy: 0.5010
-F1: 0.6893
-AUC-ROC: 0.4838
+Validation - Accuracy: 0.5103
+Balanced accuracy: 0.5150
+F1: 0.4156
+AUC-ROC: 0.5173
 
 
             ==== Test metrics ====
 
-Test - Accuracy: 0.5898
-Balanced accuracy: 0.5149
-F1: 0.7193
-AUC-ROC: 0.5266
+Test - Accuracy: 0.4756
+Balanced accuracy: 0.5089
+F1: 0.3787
+AUC-ROC: 0.5091
 

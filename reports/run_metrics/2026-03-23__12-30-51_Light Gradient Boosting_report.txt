@@ -1,0 +1,102 @@
+
+            
+            ==== Light Gradient Boosting ====
+            
+Train rows: 339147
+Val rows: 86904
+Test rows: 83855
+
+
+            ==== Used parametrs ====
+            
+learning_rate: 0.03
+n_estimators: 500
+num_leaves: 31
+min_child_samples: 50
+random_state: 42
+subsample: 0.8
+colsample_bytree: 0.8
+reg_alpha: 0.1
+reg_lambda: 0.5
+max_depth: 6
+verbosity: -1
+
+returns_windows: [1, 3, 5, 10]
+moving_average_windows: [5, 10, 20]
+volume_standard_deviation_window: 10
+volume_moving_average_window: 20
+returns_clip_range: [-0.2, 0.2]
+target_horizon_days: 10
+target_absolute_minimum_return: 0.03
+
+tickers: 
+
+AAPL, ABBV, ACGL, ACN, ADBE
+ADI, ADP, ADSK, AEE, AEP
+AES, AFL, AIZ, AJG, AKAM
+ALB, ALGN, ALK, ALLE, AMAT
+AMCR, AMD, AME, AMGN, AMP
+AMZN, ANET, AON, APA, APD
+APH, ARE, ATO, AVB, AVGO
+AVY, AXP, AZO, BA, BAC
+BALL, BAX, BBWI, BBY, BDX
+BEN, BIIB, BK, BKNG, BKR
+BLK, BMY, BR, BWA, BX
+BXP, C, CAG, CARR, CAT
+CB, CBRE, CCI, CCL, CDNS
+CDW, CE, CF, CFG, CHRW
+CHTR, CI, CINF, CL, CLX
+CMA, CMCSA, CMG, CMI, CMS
+CNC, CNP, COO, COP, COST
+CPB, CPRT, CPT, CRL, CSGP
+CSX, CTAS, CTRA, CTVA, CVX
+CZR, D, DD, DE, DG
+DHI, DLR, DLTR, DOV, DOW
+DPZ, DTE, DVA, DVN, EA
+EBAY, ECL, ED, EG, EIX
+EMN, ENPH, EPAM, EQIX, EQT
+ESS, ETN, ETR, EXC, EXPD
+EXR, F, FCX, FDS, FE
+FFIV, FIS, FITB, FMC, FOXA
+FRT, FTV, GE, GEN, GIS
+GL, GM, GOOG, GOOGL, GRMN
+GS, HAS, HBAN, HD, HIG
+HLT, HOLX, HPE, HPQ, HRL
+HSIC, HSY, HUM, IBM, IDXX
+IFF, ILMN, INCY, INTU, IQV
+IR, IRM, IT, J, JBHT
+JCI, JNJ, JPM, KDP, KEY
+KEYS, KHC, KIM, KLAC, KMI
+KMX, KO, KR, LEN, LH
+LIN, LKQ, LMT, LNT, LRCX
+LVS, LW, MA, MAR, MAS
+MCHP, MCK, MDT, MET, MGM
+MHK, MKTX, MLM, MMM, MNST
+MO, MRK, MRNA, MS, MSCI
+MSFT, MSI, MTCH, MTD, NDAQ
+NEE, NFLX, NI, NOW, NSC
+NTAP, NTRS, NVDA, NVR, NWSA
+O, ODFL, OMC, PAYX, PEG
+PEP, PFG, PH, PHM, PM
+PNR, PNW, PODD, POOL, PPG
+PRU, PSA, PWR, PYPL, QRVO
+RCL, REGN, RJF, RL, ROK
+ROP, ROST, RTX, RVTY, SBUX
+SCHW
+
+
+            ==== Validation metrics ====
+
+Validation - Accuracy: 0.5148
+Balanced accuracy: 0.5180
+F1: 0.4306
+AUC-ROC: 0.5223
+
+
+            ==== Test metrics ====
+
+Test - Accuracy: 0.4747
+Balanced accuracy: 0.5054
+F1: 0.3877
+AUC-ROC: 0.5027
+

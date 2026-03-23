@@ -2,9 +2,9 @@
             
             ==== Baseline Logistic Regression ====
             
-Train rows: 19657
-Val rows: 4889
-Test rows: 4876
+Train rows: 489940
+Val rows: 126294
+Test rows: 122131
 
 
             ==== Used parametrs ====
@@ -24,23 +24,23 @@ target_absolute_minimum_return: 0.03
 tickers: 
 
 AAPL, AMZN, AVGO, BAC, COST
-CVX, GOOGL, HD, JPM, KO
-MSFT, PEP, PG, UNH, WMT
-XOM
+CVX, GOOGL, HD, JNJ, JPM
+KO, META, MSFT, NVDA, PEP
+PG, QCOM, UNH, WMT, XOM
 
 
             ==== Validation metrics ====
 
-Validation - Accuracy: 0.5214
-Balanced accuracy: 0.5217
-F1: 0.5500
-AUC-ROC: 0.5146
+Validation - Accuracy: 0.5146
+Balanced accuracy: 0.5167
+F1: 0.4823
+AUC-ROC: 0.5219
 
 
             ==== Test metrics ====
 
-Test - Accuracy: 0.5053
-Balanced accuracy: 0.5314
-F1: 0.5008
-AUC-ROC: 0.5457
+Test - Accuracy: 0.4876
+Balanced accuracy: 0.5055
+F1: 0.4608
+AUC-ROC: 0.5100
 

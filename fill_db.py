@@ -9,14 +9,19 @@ import yfinance as yf
 from pathlib import Path
 from tqdm import tqdm
 
-from additional_functions import load_config, require_config_value
-
+from additional_functions import (
+    load_config, require_config_value,
+    choice_tickers
+)
 
 project_root = Path(__file__).resolve().parent
 config = load_config(project_root)
 
 
-tickers = require_config_value(config, 'tickers.all_tickers_1')
+
+
+
+tickers = choice_tickers()
 if not isinstance(tickers, list) or not tickers:
     raise ValueError('tickers.all_tickers должен быть не пустым списком')
 

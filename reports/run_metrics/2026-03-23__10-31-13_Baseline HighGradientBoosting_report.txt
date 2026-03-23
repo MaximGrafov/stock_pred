@@ -2,9 +2,9 @@
             
             ==== Baseline HighGradientBoosting ====
             
-Train rows: 19657
-Val rows: 4889
-Test rows: 4876
+Train rows: 489940
+Val rows: 126294
+Test rows: 122131
 
 
             ==== Used parametrs ====
@@ -26,23 +26,23 @@ target_absolute_minimum_return: 0.03
 tickers: 
 
 AAPL, AMZN, AVGO, BAC, COST
-CVX, GOOGL, HD, JPM, KO
-MSFT, PEP, PG, UNH, WMT
-XOM
+CVX, GOOGL, HD, JNJ, JPM
+KO, META, MSFT, NVDA, PEP
+PG, QCOM, UNH, WMT, XOM
 
 
             ==== Validation metrics ====
 
-Validation - Accuracy: 0.4954
-Balanced accuracy: 0.5012
-F1: 0.5043
-AUC-ROC: 0.4951
+Validation - Accuracy: 0.5129
+Balanced accuracy: 0.5154
+F1: 0.4727
+AUC-ROC: 0.5193
 
 
             ==== Test metrics ====
 
-Test - Accuracy: 0.5127
-Balanced accuracy: 0.5211
-F1: 0.5454
-AUC-ROC: 0.5218
+Test - Accuracy: 0.4854
+Balanced accuracy: 0.5058
+F1: 0.4484
+AUC-ROC: 0.5049
 

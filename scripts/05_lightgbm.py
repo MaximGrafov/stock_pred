@@ -80,6 +80,7 @@ x_test, y_test = test_df[features_columns], test_df['target']
 
 numeric_features = numeric_columns.copy()
 categorical_features = features['categorical']
+report_tickers = sorted(train_df['ticker'].dropna().astype(str).unique().tolist())
 
 
 numeric_transformer = Pipeline(
@@ -209,5 +210,6 @@ write_metrics_reports(
     val_rows=len(x_val),
     test_rows=len(x_test),
     val_metrics=val_metrics_map,
-    test_metrics=test_metrics_map
+    test_metrics=test_metrics_map,
+    report_tickers=report_tickers
     )
