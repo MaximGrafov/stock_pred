@@ -1,0 +1,135 @@
+reports/run_metrics/2026-03-23__10-29-32_Baseline Logistic Regression_report.txt		10	0.03	0.5219	0.5100	0.5167	0.5055	0.5146	0.4876
+reports/run_metrics/2026-03-23__10-31-13_Baseline HighGradientBoosting_report.txt		10	0.03	0.5193	0.5049	0.5154	0.5058	0.5129	0.4854
+reports/run_metrics/2026-03-23__10-31-37_Light Gradient Boosting_report.txt		10	0.03	0.5173	0.5091	0.5150	0.5089	0.5103	0.4756
+reports/run_metrics/2026-03-23__12-29-50_Baseline Logistic Regression_report.txt		10	0.03	0.5245	0.5073	0.5192	0.5039	0.5180	0.4890
+reports/run_metrics/2026-03-23__12-30-41_Baseline HighGradientBoosting_report.txt		10	0.03	0.5231	0.4984	0.5173	0.5019	0.5143	0.4727
+reports/run_metrics/2026-03-23__12-30-51_Light Gradient Boosting_report.txt		10	0.03	0.5223	0.5027	0.5180	0.5054	0.5148	0.4747
+reports/run_metrics/2026-03-23__15-21-37_Baseline Logistic Regression_report.txt		10	0.03	0.5146	0.5457	0.5217	0.5314	0.5214	0.5053
+reports/run_metrics/2026-03-23__15-21-43_Baseline HighGradientBoosting_report.txt		10	0.03	0.4951	0.5218	0.5012	0.5211	0.4954	0.5127
+reports/run_metrics/2026-03-23__15-21-46_Light Gradient Boosting_report.txt		10	0.03	0.4838	0.5266	0.5010	0.5149	0.5498	0.5898
+reports/run_metrics/2026-03-23__20-49-43_Logistic Regression Grid Search_report.txt		5	0.005	0.4978	0.5194	0.5036	0.5121	0.4867	0.4674
+reports/run_metrics/2026-03-23__20-50-16_High Gradient Boosting Grid Search_report.txt		5	0.005	0.5071	0.5229	0.5078	0.5172	0.5306	0.5586
+reports/run_metrics/2026-03-23__20-55-00_Light Gradient Boosting Grid Search_report.txt		5	0.005	0.5112	0.5181	0.5098	0.5090	0.5132	0.5080
+reports/run_metrics/2026-03-23__20-55-10_Logistic Regression Grid Search_report.txt		5	0.01	0.4988	0.5213	0.5046	0.5125	0.4975	0.4828
+reports/run_metrics/2026-03-23__20-55-48_High Gradient Boosting Grid Search_report.txt		5	0.01	0.4940	0.5194	0.5043	0.5079	0.5228	0.5396
+reports/run_metrics/2026-03-23__21-00-00_Light Gradient Boosting Grid Search_report.txt		5	0.01	0.5035	0.5192	0.5080	0.5057	0.4898	0.4583
+reports/run_metrics/2026-03-23__21-00-10_Logistic Regression Grid Search_report.txt		5	0.03	0.5169	0.5392	0.5254	0.5183	0.5136	0.4740
+reports/run_metrics/2026-03-23__21-00-35_High Gradient Boosting Grid Search_report.txt		5	0.03	0.5202	0.5128	0.5251	0.5065	0.5051	0.4499
+reports/run_metrics/2026-03-23__21-03-28_Light Gradient Boosting Grid Search_report.txt		5	0.03	0.5252	0.5223	0.5239	0.5126	0.5336	0.5237
+reports/run_metrics/2026-03-23__21-03-37_Logistic Regression Grid Search_report.txt		5	0.05	0.5433	0.4990	0.5335	0.5023	0.5272	0.4500
+reports/run_metrics/2026-03-23__21-04-01_High Gradient Boosting Grid Search_report.txt		5	0.05	0.5429	0.5051	0.5363	0.5025	0.5377	0.5035
+reports/run_metrics/2026-03-23__21-06-00_Light Gradient Boosting Grid Search_report.txt		5	0.05	0.5540	0.5186	0.5374	0.5103	0.5369	0.4945
+reports/run_metrics/2026-03-23__21-06-11_Logistic Regression Grid Search_report.txt		10	0.005	0.4874	0.5375	0.5030	0.5218	0.5063	0.5084
+reports/run_metrics/2026-03-23__21-07-02_High Gradient Boosting Grid Search_report.txt		10	0.005	0.4818	0.5397	0.4943	0.5234	0.5249	0.5734
+reports/run_metrics/2026-03-23__21-11-57_Light Gradient Boosting Grid Search_report.txt		10	0.005	0.4942	0.5421	0.5014	0.5263	0.4894	0.4894
+reports/run_metrics/2026-03-23__21-12-07_Logistic Regression Grid Search_report.txt		10	0.01	0.4906	0.5374	0.5040	0.5192	0.5125	0.5099
+reports/run_metrics/2026-03-23__21-12-54_High Gradient Boosting Grid Search_report.txt		10	0.01	0.4794	0.5462	0.4931	0.5181	0.4677	0.4552
+reports/run_metrics/2026-03-23__21-17-30_Light Gradient Boosting Grid Search_report.txt		10	0.01	0.4816	0.5443	0.4999	0.5149	0.4763	0.4561
+reports/run_metrics/2026-03-23__21-17-40_Logistic Regression Grid Search_report.txt		10	0.03	0.5048	0.5493	0.5158	0.5324	0.5116	0.4998
+reports/run_metrics/2026-03-23__21-18-12_High Gradient Boosting Grid Search_report.txt		10	0.03	0.4837	0.5264	0.5044	0.5058	0.5566	0.5972
+reports/run_metrics/2026-03-23__21-21-37_Light Gradient Boosting Grid Search_report.txt		10	0.03	0.4817	0.5350	0.5011	0.5075	0.5543	0.6012
+reports/run_metrics/2026-03-23__21-21-47_Logistic Regression Grid Search_report.txt		10	0.05	0.5400	0.5171	0.5441	0.5171	0.5534	0.5125
+reports/run_metrics/2026-03-23__21-22-18_High Gradient Boosting Grid Search_report.txt		10	0.05	0.5398	0.5029	0.5311	0.5087	0.5471	0.5360
+reports/run_metrics/2026-03-23__21-24-44_Light Gradient Boosting Grid Search_report.txt		10	0.05	0.5364	0.4921	0.5373	0.4897	0.5218	0.4565
+reports/run_metrics/2026-03-23__21-24-54_Logistic Regression Grid Search_report.txt		20	0.005	0.5171	0.5364	0.5191	0.5101	0.5218	0.4815
+reports/run_metrics/2026-03-23__21-25-53_High Gradient Boosting Grid Search_report.txt		20	0.005	0.4939	0.5456	0.5018	0.5345	0.5121	0.5379
+reports/run_metrics/2026-03-23__21-30-55_Light Gradient Boosting Grid Search_report.txt		20	0.005	0.4929	0.5359	0.5119	0.5200	0.5461	0.5515
+reports/run_metrics/2026-03-23__21-31-05_Logistic Regression Grid Search_report.txt		20	0.01	0.5209	0.5354	0.5230	0.5192	0.5387	0.5145
+reports/run_metrics/2026-03-23__21-32-01_High Gradient Boosting Grid Search_report.txt		20	0.01	0.4914	0.5506	0.4997	0.5319	0.5279	0.5639
+reports/run_metrics/2026-03-23__21-36-49_Light Gradient Boosting Grid Search_report.txt		20	0.01	0.4926	0.5490	0.5065	0.5371	0.5351	0.5633
+reports/run_metrics/2026-03-23__21-36-59_Logistic Regression Grid Search_report.txt		20	0.03	0.5299	0.5434	0.5289	0.5274	0.5354	0.4942
+reports/run_metrics/2026-03-23__21-37-42_High Gradient Boosting Grid Search_report.txt		20	0.03	0.4948	0.5427	0.4997	0.5078	0.5536	0.6099
+reports/run_metrics/2026-03-23__21-41-37_Light Gradient Boosting Grid Search_report.txt		20	0.03	0.5018	0.5164	0.5080	0.5215	0.4893	0.4581
+reports/run_metrics/2026-03-23__21-41-47_Logistic Regression Grid Search_report.txt		20	0.05	0.5451	0.5765	0.5569	0.5318	0.5456	0.4516
+reports/run_metrics/2026-03-23__21-42-23_High Gradient Boosting Grid Search_report.txt		20	0.05	0.5226	0.5414	0.5222	0.5158	0.5237	0.4916
+reports/run_metrics/2026-03-23__21-45-31_Light Gradient Boosting Grid Search_report.txt		20	0.05	0.4994	0.5168	0.5056	0.5185	0.5627	0.6540
+reports/run_metrics/2026-03-23__22-56-00_Logistic Regression Grid Search_report.txt		5	0.005	0.4978	0.5194	0.5036	0.5121	0.4867	0.4674
+reports/run_metrics/2026-03-23__22-56-36_High Gradient Boosting Grid Search_report.txt		5	0.005	0.5071	0.5229	0.5078	0.5172	0.5306	0.5586
+reports/run_metrics/2026-03-23__23-01-15_Light Gradient Boosting Grid Search_report.txt		5	0.005	0.5112	0.5181	0.5098	0.5090	0.5132	0.5080
+reports/run_metrics/2026-03-23__23-01-25_Logistic Regression Grid Search_report.txt		5	0.01	0.4988	0.5213	0.5046	0.5125	0.4975	0.4828
+reports/run_metrics/2026-03-23__23-02-03_High Gradient Boosting Grid Search_report.txt		5	0.01	0.4940	0.5194	0.5043	0.5079	0.5228	0.5396
+reports/run_metrics/2026-03-23__23-06-06_Light Gradient Boosting Grid Search_report.txt		5	0.01	0.5035	0.5192	0.5080	0.5057	0.4898	0.4583
+reports/run_metrics/2026-03-23__23-06-15_Logistic Regression Grid Search_report.txt		5	0.03	0.5169	0.5392	0.5254	0.5183	0.5136	0.4740
+reports/run_metrics/2026-03-23__23-06-38_High Gradient Boosting Grid Search_report.txt		5	0.03	0.5202	0.5128	0.5251	0.5065	0.5051	0.4499
+reports/run_metrics/2026-03-23__23-09-16_Light Gradient Boosting Grid Search_report.txt		5	0.03	0.5252	0.5223	0.5239	0.5126	0.5336	0.5237
+reports/run_metrics/2026-03-23__23-09-25_Logistic Regression Grid Search_report.txt		5	0.05	0.5433	0.4990	0.5335	0.5023	0.5272	0.4500
+reports/run_metrics/2026-03-23__23-09-47_High Gradient Boosting Grid Search_report.txt		5	0.05	0.5429	0.5051	0.5363	0.5025	0.5377	0.5035
+reports/run_metrics/2026-03-23__23-11-38_Light Gradient Boosting Grid Search_report.txt		5	0.05	0.5540	0.5186	0.5374	0.5103	0.5369	0.4945
+reports/run_metrics/2026-03-23__23-11-47_Logistic Regression Grid Search_report.txt		5	0.07	0.5904	0.5466	0.5816	0.5320	0.5787	0.4743
+reports/run_metrics/2026-03-23__23-12-05_High Gradient Boosting Grid Search_report.txt		5	0.07	0.5687	0.5303	0.5377	0.5183	0.5378	0.4953
+reports/run_metrics/2026-03-23__23-13-37_Light Gradient Boosting Grid Search_report.txt		5	0.07	0.5775	0.5433	0.5633	0.5304	0.5665	0.5280
+reports/run_metrics/2026-03-23__23-13-45_Logistic Regression Grid Search_report.txt		5	0.1	0.4193	0.5591	0.5051	0.4945	0.4527	0.5732
+reports/run_metrics/2026-03-23__23-13-58_High Gradient Boosting Grid Search_report.txt		5	0.1	0.5125	0.4472	0.5595	0.4764	0.5743	0.4968
+reports/run_metrics/2026-03-23__23-15-04_Light Gradient Boosting Grid Search_report.txt		5	0.1	0.5694	0.4737	0.5759	0.4950	0.5878	0.5159
+reports/run_metrics/2026-03-23__23-15-14_Logistic Regression Grid Search_report.txt		10	0.005	0.4874	0.5375	0.5030	0.5218	0.5063	0.5084
+reports/run_metrics/2026-03-23__23-16-01_High Gradient Boosting Grid Search_report.txt		10	0.005	0.4818	0.5397	0.4943	0.5234	0.5249	0.5734
+reports/run_metrics/2026-03-23__23-20-41_Light Gradient Boosting Grid Search_report.txt		10	0.005	0.4942	0.5421	0.5014	0.5263	0.4894	0.4894
+reports/run_metrics/2026-03-23__23-20-51_Logistic Regression Grid Search_report.txt		10	0.01	0.4906	0.5374	0.5040	0.5192	0.5125	0.5099
+reports/run_metrics/2026-03-23__23-21-35_High Gradient Boosting Grid Search_report.txt		10	0.01	0.4794	0.5462	0.4931	0.5181	0.4677	0.4552
+reports/run_metrics/2026-03-23__23-25-58_Light Gradient Boosting Grid Search_report.txt		10	0.01	0.4816	0.5443	0.4999	0.5149	0.4763	0.4561
+reports/run_metrics/2026-03-23__23-26-06_Logistic Regression Grid Search_report.txt		10	0.03	0.5048	0.5493	0.5158	0.5324	0.5116	0.4998
+reports/run_metrics/2026-03-23__23-26-36_High Gradient Boosting Grid Search_report.txt		10	0.03	0.4837	0.5264	0.5044	0.5058	0.5566	0.5972
+reports/run_metrics/2026-03-23__23-29-48_Light Gradient Boosting Grid Search_report.txt		10	0.03	0.4817	0.5350	0.5011	0.5075	0.5543	0.6012
+reports/run_metrics/2026-03-23__23-29-58_Logistic Regression Grid Search_report.txt		10	0.05	0.5400	0.5171	0.5441	0.5171	0.5534	0.5125
+reports/run_metrics/2026-03-23__23-30-26_High Gradient Boosting Grid Search_report.txt		10	0.05	0.5398	0.5029	0.5311	0.5087	0.5471	0.5360
+reports/run_metrics/2026-03-23__23-32-44_Light Gradient Boosting Grid Search_report.txt		10	0.05	0.5364	0.4921	0.5373	0.4897	0.5218	0.4565
+reports/run_metrics/2026-03-23__23-32-52_Logistic Regression Grid Search_report.txt		10	0.07	0.5393	0.4982	0.5419	0.5236	0.5424	0.4987
+reports/run_metrics/2026-03-23__23-33-14_High Gradient Boosting Grid Search_report.txt		10	0.07	0.5100	0.4739	0.5250	0.4829	0.5315	0.4907
+reports/run_metrics/2026-03-23__23-35-01_Light Gradient Boosting Grid Search_report.txt		10	0.07	0.5042	0.4831	0.5122	0.4839	0.5230	0.5120
+reports/run_metrics/2026-03-23__23-35-10_Logistic Regression Grid Search_report.txt		10	0.1	0.5843	0.5926	0.5883	0.5200	0.5678	0.4594
+reports/run_metrics/2026-03-23__23-35-27_High Gradient Boosting Grid Search_report.txt		10	0.1	0.5845	0.5111	0.5726	0.5231	0.5678	0.4826
+reports/run_metrics/2026-03-23__23-36-54_Light Gradient Boosting Grid Search_report.txt		10	0.1	0.5972	0.5025	0.5765	0.4794	0.5537	0.4292
+reports/run_metrics/2026-03-23__23-37-03_Logistic Regression Grid Search_report.txt		20	0.005	0.5171	0.5364	0.5191	0.5101	0.5218	0.4815
+reports/run_metrics/2026-03-23__23-37-59_High Gradient Boosting Grid Search_report.txt		20	0.005	0.4939	0.5456	0.5018	0.5345	0.5121	0.5379
+reports/run_metrics/2026-03-23__23-42-48_Light Gradient Boosting Grid Search_report.txt		20	0.005	0.4929	0.5359	0.5119	0.5200	0.5461	0.5515
+reports/run_metrics/2026-03-23__23-42-58_Logistic Regression Grid Search_report.txt		20	0.01	0.5209	0.5354	0.5230	0.5192	0.5387	0.5145
+reports/run_metrics/2026-03-23__23-43-52_High Gradient Boosting Grid Search_report.txt		20	0.01	0.4914	0.5506	0.4997	0.5319	0.5279	0.5639
+reports/run_metrics/2026-03-23__23-48-31_Light Gradient Boosting Grid Search_report.txt		20	0.01	0.4926	0.5490	0.5065	0.5371	0.5351	0.5633
+reports/run_metrics/2026-03-23__23-48-40_Logistic Regression Grid Search_report.txt		20	0.03	0.5299	0.5434	0.5289	0.5274	0.5354	0.4942
+reports/run_metrics/2026-03-23__23-49-22_High Gradient Boosting Grid Search_report.txt		20	0.03	0.4948	0.5427	0.4997	0.5078	0.5536	0.6099
+reports/run_metrics/2026-03-23__23-53-06_Light Gradient Boosting Grid Search_report.txt		20	0.03	0.5018	0.5164	0.5080	0.5215	0.4893	0.4581
+reports/run_metrics/2026-03-23__23-53-15_Logistic Regression Grid Search_report.txt		20	0.05	0.5451	0.5765	0.5569	0.5318	0.5456	0.4516
+reports/run_metrics/2026-03-23__23-53-51_High Gradient Boosting Grid Search_report.txt		20	0.05	0.5226	0.5414	0.5222	0.5158	0.5237	0.4916
+reports/run_metrics/2026-03-23__23-56-50_Light Gradient Boosting Grid Search_report.txt		20	0.05	0.4994	0.5168	0.5056	0.5185	0.5627	0.6540
+reports/run_metrics/2026-03-23__23-56-59_Logistic Regression Grid Search_report.txt		20	0.07	0.5285	0.5721	0.5317	0.5366	0.5269	0.4553
+reports/run_metrics/2026-03-23__23-57-33_High Gradient Boosting Grid Search_report.txt		20	0.07	0.5256	0.5188	0.5156	0.5221	0.5509	0.6448
+reports/run_metrics/2026-03-24__00-00-04_Light Gradient Boosting Grid Search_report.txt		20	0.07	0.5169	0.4707	0.5249	0.4963	0.5331	0.5256
+reports/run_metrics/2026-03-24__00-00-13_Logistic Regression Grid Search_report.txt		20	0.1	0.5258	0.5332	0.5246	0.4938	0.4937	0.3590
+reports/run_metrics/2026-03-24__00-00-35_High Gradient Boosting Grid Search_report.txt		20	0.1	0.4792	0.5453	0.4871	0.5414	0.4945	0.5030
+reports/run_metrics/2026-03-24__00-02-25_Light Gradient Boosting Grid Search_report.txt		20	0.1	0.5038	0.5339	0.5058	0.5113	0.5360	0.5578
+reports/run_metrics/2026-03-24__00-02-34_Logistic Regression Grid Search_report.txt		25	0.005	0.5131	0.5361	0.5141	0.5090	0.5168	0.4725
+reports/run_metrics/2026-03-24__00-03-27_High Gradient Boosting Grid Search_report.txt		25	0.005	0.4979	0.5379	0.5086	0.5302	0.4999	0.4919
+reports/run_metrics/2026-03-24__00-08-11_Light Gradient Boosting Grid Search_report.txt		25	0.005	0.4968	0.5440	0.5109	0.5351	0.4968	0.4803
+reports/run_metrics/2026-03-24__00-08-21_Logistic Regression Grid Search_report.txt		25	0.01	0.5215	0.5390	0.5205	0.5179	0.5175	0.4735
+reports/run_metrics/2026-03-24__00-09-12_High Gradient Boosting Grid Search_report.txt		25	0.01	0.4887	0.5442	0.5026	0.5281	0.4781	0.4546
+reports/run_metrics/2026-03-24__00-13-46_Light Gradient Boosting Grid Search_report.txt		25	0.01	0.4951	0.5464	0.5105	0.5482	0.5240	0.5357
+reports/run_metrics/2026-03-24__00-13-55_Logistic Regression Grid Search_report.txt		25	0.03	0.5396	0.5432	0.5359	0.5115	0.5089	0.4274
+reports/run_metrics/2026-03-24__00-14-38_High Gradient Boosting Grid Search_report.txt		25	0.03	0.5134	0.5378	0.5105	0.5138	0.5314	0.5324
+reports/run_metrics/2026-03-24__00-18-27_Light Gradient Boosting Grid Search_report.txt		25	0.03	0.5013	0.5407	0.5040	0.5238	0.4810	0.4491
+reports/run_metrics/2026-03-24__00-18-36_Logistic Regression Grid Search_report.txt		25	0.05	0.5436	0.5738	0.5416	0.5505	0.5417	0.4970
+reports/run_metrics/2026-03-24__00-19-13_High Gradient Boosting Grid Search_report.txt		25	0.05	0.5385	0.5436	0.5331	0.5328	0.5479	0.5543
+reports/run_metrics/2026-03-24__00-22-20_Light Gradient Boosting Grid Search_report.txt		25	0.05	0.5255	0.5717	0.5322	0.5479	0.5263	0.4968
+reports/run_metrics/2026-03-24__00-22-29_Logistic Regression Grid Search_report.txt		25	0.07	0.5499	0.5803	0.5500	0.5585	0.5468	0.4764
+reports/run_metrics/2026-03-24__00-22-59_High Gradient Boosting Grid Search_report.txt		25	0.07	0.5206	0.5659	0.5117	0.5252	0.5670	0.6825
+reports/run_metrics/2026-03-24__00-25-39_Light Gradient Boosting Grid Search_report.txt		25	0.07	0.5167	0.5006	0.5084	0.5225	0.5670	0.6886
+reports/run_metrics/2026-03-24__00-25-48_Logistic Regression Grid Search_report.txt		25	0.1	0.5241	0.5351	0.5332	0.5402	0.5414	0.5302
+reports/run_metrics/2026-03-24__00-26-12_High Gradient Boosting Grid Search_report.txt		25	0.1	0.4822	0.5652	0.4914	0.5419	0.5318	0.6269
+reports/run_metrics/2026-03-24__00-28-16_Light Gradient Boosting Grid Search_report.txt		25	0.1	0.4777	0.6071	0.4925	0.4996	0.5445	0.6627
+reports/run_metrics/2026-03-24__00-28-26_Logistic Regression Grid Search_report.txt		30	0.005	0.5269	0.5447	0.5326	0.5235	0.5454	0.4930
+reports/run_metrics/2026-03-24__00-29-21_High Gradient Boosting Grid Search_report.txt		30	0.005	0.5011	0.5053	0.5138	0.4893	0.5106	0.4444
+reports/run_metrics/2026-03-24__00-34-14_Light Gradient Boosting Grid Search_report.txt		30	0.005	0.5070	0.5505	0.5115	0.5481	0.5281	0.5467
+reports/run_metrics/2026-03-24__00-34-23_Logistic Regression Grid Search_report.txt		30	0.01	0.5303	0.5396	0.5326	0.5185	0.5210	0.4484
+reports/run_metrics/2026-03-24__00-35-18_High Gradient Boosting Grid Search_report.txt		30	0.01	0.4967	0.5325	0.5134	0.5172	0.4873	0.4334
+reports/run_metrics/2026-03-24__00-39-53_Light Gradient Boosting Grid Search_report.txt		30	0.01	0.5045	0.5369	0.5174	0.5142	0.4837	0.4220
+reports/run_metrics/2026-03-24__00-40-03_Logistic Regression Grid Search_report.txt		30	0.03	0.5353	0.5476	0.5325	0.5079	0.5032	0.4164
+reports/run_metrics/2026-03-24__00-40-50_High Gradient Boosting Grid Search_report.txt		30	0.03	0.5072	0.5469	0.5135	0.5400	0.5124	0.5067
+reports/run_metrics/2026-03-24__00-44-50_Light Gradient Boosting Grid Search_report.txt		30	0.03	0.5066	0.5566	0.5160	0.5422	0.5030	0.4654
+reports/run_metrics/2026-03-24__00-45-00_Logistic Regression Grid Search_report.txt		30	0.05	0.5375	0.5583	0.5473	0.5220	0.5426	0.4496
+reports/run_metrics/2026-03-24__00-45-39_High Gradient Boosting Grid Search_report.txt		30	0.05	0.5251	0.5379	0.5283	0.5266	0.5330	0.5174
+reports/run_metrics/2026-03-24__00-49-00_Light Gradient Boosting Grid Search_report.txt		30	0.05	0.5030	0.5470	0.5027	0.5225	0.5710	0.6748
+reports/run_metrics/2026-03-24__00-49-10_Logistic Regression Grid Search_report.txt		30	0.07	0.5465	0.5811	0.5517	0.5507	0.5563	0.5156
+reports/run_metrics/2026-03-24__00-49-43_High Gradient Boosting Grid Search_report.txt		30	0.07	0.5182	0.5762	0.5093	0.5502	0.5443	0.6183
+reports/run_metrics/2026-03-24__00-52-31_Light Gradient Boosting Grid Search_report.txt		30	0.07	0.5078	0.5081	0.5059	0.5285	0.5678	0.6968
+reports/run_metrics/2026-03-24__00-52-40_Logistic Regression Grid Search_report.txt		30	0.1	0.5058	0.5108	0.5187	0.4957	0.4748	0.3573
+reports/run_metrics/2026-03-24__00-53-06_High Gradient Boosting Grid Search_report.txt		30	0.1	0.4910	0.4792	0.5048	0.5126	0.5594	0.6416
+reports/run_metrics/2026-03-24__00-55-11_Light Gradient Boosting Grid Search_report.txt		30	0.1	0.5114	0.4423	0.5184	0.4957	0.5798	0.6343
