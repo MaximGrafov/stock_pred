@@ -18,6 +18,36 @@ dataset:
     target_absolute_minimum_return: 0.03
 
 
+grid_search:
+  metric_for_best: auc_roc
+
+models_grid:
+  logistic_regression:
+    maximum_iterations: [500, 1000]
+    number_of_jobs: [-1]
+    class_weight_strategy: ["balanced", null]
+
+  high_gradient_boosting:
+    learning_rate: [0.03, 0.05]
+    maximum_tree_depth: [4, 6, 8]
+    maximum_iterations: [300, 400, 600]
+    minimum_samples_per_leaf: [50, 100]
+    random_state_seed: [42]
+
+  light_gradient_boosting:
+    learning_rate: [0.01, 0.03]
+    n_estimators: [300, 500, 800]
+    num_leaves: [15, 31, 63]
+    min_child_samples: [20, 50]
+    random_state: [42]
+    subsample: [0.8]
+    colsample_bytree: [0.8]
+    reg_alpha: [0.0, 0.1]
+    reg_lambda: [0.0, 0.5]
+    max_depth: [4, 6, 8]
+    verbosity: [-1]
+
+
 split:
     training_ratio: 0.70
     validation_ratio: 0.15
@@ -155,19 +185,19 @@ tickers:
     - AMZN
     - GOOGL
     - META
+    - AVGO
     - JPM
     - BAC
     - XOM
     - CVX
-    - JNJ
     - UNH
+    - JNJ
     - PG
     - KO
     - PEP
     - HD
     - COST
     - WMT
-    - AVGO
     - QCOM
 
     all_tickers_1:
