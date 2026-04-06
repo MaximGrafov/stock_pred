@@ -3,5 +3,4 @@ main_db.db
 __pycache__/
 scripts/__pycache__/
 scripts/dataset.parquet
-data/
 .archive/

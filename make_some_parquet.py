@@ -14,36 +14,23 @@ CONFIG_PATH = ROOT / 'config.yaml'
 
 
 DATASET_GRID = [
-    {"target_horizon_days": 5, "target_absolute_minimum_return": 0.005},
-    {"target_horizon_days": 5, "target_absolute_minimum_return": 0.01},
-    {"target_horizon_days": 5, "target_absolute_minimum_return": 0.03},
-    {"target_horizon_days": 5, "target_absolute_minimum_return": 0.05},
-    {"target_horizon_days": 5, "target_absolute_minimum_return": 0.07},
-    {"target_horizon_days": 5, "target_absolute_minimum_return": 0.10},
-    
-    {"target_horizon_days": 10, "target_absolute_minimum_return": 0.005},
-    {"target_horizon_days": 10, "target_absolute_minimum_return": 0.01},
+
     {"target_horizon_days": 10, "target_absolute_minimum_return": 0.03},
     {"target_horizon_days": 10, "target_absolute_minimum_return": 0.05},
     {"target_horizon_days": 10, "target_absolute_minimum_return": 0.07},
     {"target_horizon_days": 10, "target_absolute_minimum_return": 0.10},
     
-    {"target_horizon_days": 20, "target_absolute_minimum_return": 0.005},
-    {"target_horizon_days": 20, "target_absolute_minimum_return": 0.01},
+
     {"target_horizon_days": 20, "target_absolute_minimum_return": 0.03},
     {"target_horizon_days": 20, "target_absolute_minimum_return": 0.05},
     {"target_horizon_days": 20, "target_absolute_minimum_return": 0.07},
     {"target_horizon_days": 20, "target_absolute_minimum_return": 0.10},
 
-    {"target_horizon_days": 25, "target_absolute_minimum_return": 0.005},
-    {"target_horizon_days": 25, "target_absolute_minimum_return": 0.01},
     {"target_horizon_days": 25, "target_absolute_minimum_return": 0.03},
     {"target_horizon_days": 25, "target_absolute_minimum_return": 0.05},
     {"target_horizon_days": 25, "target_absolute_minimum_return": 0.07},
     {"target_horizon_days": 25, "target_absolute_minimum_return": 0.10},
 
-    {"target_horizon_days": 30, "target_absolute_minimum_return": 0.005},
-    {"target_horizon_days": 30, "target_absolute_minimum_return": 0.01},
     {"target_horizon_days": 30, "target_absolute_minimum_return": 0.03},
     {"target_horizon_days": 30, "target_absolute_minimum_return": 0.05},
     {"target_horizon_days": 30, "target_absolute_minimum_return": 0.07},

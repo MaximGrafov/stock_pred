@@ -6,7 +6,9 @@ import pandas as pd
 
 from pathlib import Path
 
-from additional_functions import load_config, require_config_value
+from support_functions import(
+    load_config, require_config_value
+    )
 
 project_root = Path(__file__).resolve().parents[1]
 config = load_config(project_root)

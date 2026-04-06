@@ -2,14 +2,14 @@
             
             ==== Logistic Regression Grid Search ====
             
-Train rows: 2138
-Val rows: 489
-Test rows: 428
+Train rows: 76423
+Val rows: 21837
+Test rows: 20007
 
 
             ==== Used parametrs ====
             
-class_weight_strategy: balanced
+class_weight_strategy: None
 maximum_iterations: 500
 number_of_jobs: -1
 
@@ -23,23 +23,95 @@ target_absolute_minimum_return: 0.07
 
 tickers: 
 
-AAPL, AMZN, BAC, COST, CVX
-GOOGL, JPM, KO, META, PEP
-PG, UNH, WMT, XOM
+AAPL, ABBV, ABNB, ABT, ACGL
+ACN, ADBE, ADI, ADM, ADP
+ADSK, AEE, AEP, AES, AFL
+AIG, AIZ, AJG, AKAM, ALB
+ALGN, ALK, ALL, ALLE, AMAT
+AMCR, AMD, AME, AMGN, AMP
+AMT, AMZN, ANET, AON, AOS
+APA, APD, APH, APTV, ARE
+ATO, AVB, AVGO, AVY, AWK
+AXP, AZO, BA, BAC, BALL
+BAX, BBWI, BBY, BDX, BEN
+BG, BIIB, BK, BKNG, BKR
+BLK, BMY, BR, BRO, BSX
+BWA, BX, BXP, C, CAG
+CAH, CARR, CAT, CB, CBOE
+CBRE, CCI, CCL, CDNS, CDW
+CE, CF, CFG, CHD, CHRW
+CHTR, CI, CINF, CL, CLX
+CMA, CMCSA, CME, CMG, CMI
+CMS, CNC, CNP, COF, COO
+COP, COST, CPB, CPRT, CPT
+CRL, CRM, CSCO, CSGP, CSX
+CTAS, CTRA, CTSH, CTVA, CVS
+CVX, CZR, D, DAL, DD
+DE, DG, DGX, DHI, DHR
+DIS, DLR, DLTR, DOV, DOW
+DPZ, DRI, DUK, DVA, DVN
+DXCM, EA, EBAY, ECL, ED
+EFX, EG, EIX, EL, ELV
+EMN, EMR, ENPH, EOG, EPAM
+EQIX, EQR, EQT, ES, ESS
+ETN, ETR, EVRG, EW, EXC
+EXPD, EXPE, EXR, F, FANG
+FAST, FCX, FDS, FDX, FE
+FFIV, FICO, FIS, FISV, FITB
+FMC, FOX, FOXA, FRT, FTNT
+FTV, GD, GE, GEN, GILD
+GIS, GL, GLW, GM, GNRC
+GOOG, GOOGL, GPC, GPN, GRMN
+GS, HAL, HAS, HBAN, HCA
+HD, HIG, HII, HLT, HOLX
+HON, HPE, HPQ, HRL, HSIC
+HST, HSY, HUM, HWM, IBM
+ICE, IDXX, IEX, IFF, ILMN
+INCY, INTC, INTU, INVH, IP
+IQV, IR, IRM, ISRG, IT
+ITW, J, JBHT, JBL, JCI
+JKHY, JNJ, JPM, KDP, KEY
+KEYS, KHC, KIM, KLAC, KMB
+KMI, KMX, KO, KR, LDOS
+LEN, LH, LHX, LIN, LKQ
+LLY, LMT, LNT, LOW, LRCX
+LULU, LUV, LVS, LW, LYB
+LYV, MA, MAA, MAR, MAS
+MCD, MCHP, MCK, MCO, MDLZ
+MDT, MET, META, MGM, MHK
+MKC, MKTX, MLM, MMM, MNST
+MO, MOS, MPC, MRK, MRNA
+MS, MSCI, MSFT, MSI, MTB
+MTCH, MTD, MU, NCLH, NDAQ
+NEE, NEM, NFLX, NI, NKE
+NOC, NOW, NRG, NSC, NTAP
+NTRS, NUE, NVDA, NVR, NWS
+NWSA, NXPI, O, ODFL, OKE
+OMC, ORCL, ORLY, OTIS, PAYC
+PAYX, PCAR, PCG, PEG, PEP
+PFE, PFG, PG, PGR, PH
+PHM, PKG, PLD, PM, PNC
+PNR, PNW, PODD, POOL, PPG
+PPL, PRU, PSA, PSX, PTC
+PWR, PYPL, QCOM, QRVO, RCL
+REG, REGN, RF, RHI, RJF
+RL, RMD, ROK, ROL, ROP
+ROST, RSG, RTX, RVTY, SBAC
+SBUX, SCHW
 
 
             ==== Validation metrics ====
 
-Validation - Accuracy: 0.5787
-Balanced accuracy: 0.5816
-F1: 0.4772
-AUC-ROC: 0.5904
+Validation - Accuracy: 0.5429
+Balanced accuracy: 0.5455
+F1: 0.5862
+AUC-ROC: 0.5588
 
 
             ==== Test metrics ====
 
-Test - Accuracy: 0.4743
-Balanced accuracy: 0.5320
-F1: 0.1636
-AUC-ROC: 0.5466
+Test - Accuracy: 0.5276
+Balanced accuracy: 0.5205
+F1: 0.5799
+AUC-ROC: 0.5321
 
