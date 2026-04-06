@@ -7,62 +7,28 @@ import pandas as pd
 
 from pathlib import Path
 from typing import Any
+
 from sklearn.model_selection import ParameterGrid
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, FunctionTransformer
 from sklearn.impute import SimpleImputer
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import HistGradientBoostingClassifier
 from lightgbm import LGBMClassifier
+from catboost import CatBoostClassifier
 
 from sklearn.metrics import (
     accuracy_score, balanced_accuracy_score,
     f1_score, roc_auc_score
     )
 
-from additional_functions import(
+from support_functions import(
     load_config, print_eval_block, write_metrics_reports,
     show_info, require_config_value
     )
 
-
-project_root = Path(__file__).resolve().parents[1]
-config = load_config(project_root)
-
-
-data_file = project_root / Path(require_config_value(config, 'paths.dataset_parquet'))
-df = pd.read_parquet(data_file)
-df['date'] = pd.to_datetime(df['date'])
-
-
-split_values = require_config_value(config, 'split')
-train_ratio = float(split_values['training_ratio'])
-validation_ratio = float(split_values['validation_ratio'])
-validation_end_ratio = train_ratio + validation_ratio
-
-threshold_params = require_config_value(config, 'threshold_search')
-features = require_config_value(config, 'features')
-models_grid = require_config_value(config, 'models_grid')
-
-
-df = df.sort_values('date').reset_index(drop=True)
-unique_date = df['date'].unique()
-n_dates = len(unique_date)
-
-
-cut1 = int(n_dates * train_ratio)
-cut2 = int(n_dates * validation_end_ratio)
-
-
-train_end = unique_date[cut1 - 1]
-val_end = unique_date[cut2 - 1]
-
-train_df = df[df['date'] <= train_end].copy()
-val_df = df[(df['date'] > train_end) & (df['date'] <= val_end)].copy()
-test_df = df[df['date'] > val_end].copy()
-
-report_tickers = sorted(train_df['ticker'].dropna().astype(str).unique().tolist())
 
 
 def prepare_xy(features_columns):
@@ -263,57 +229,117 @@ def run_grid(
         )
     
 
-run_grid(
-    model_name='Logistic Regression',
-    feature_key='baseline',
-    threshold_key='logistic_regression_baseline',
-    grid_params=models_grid['logistic_regression'],
-    model_factory=lambda p: LogisticRegression(
-        max_iter=p['maximum_iterations'],
-        n_jobs=p['number_of_jobs'],
-        class_weight=p['class_weight_strategy']
-    ),
-    use_scaler=True,
-    report_path_key='paths.baseline_report'
-    )
+
+if __name__ == '__main__':
+    
+    project_root = Path(__file__).resolve().parents[1]
+    config = load_config(project_root)
 
 
-
-run_grid(
-    model_name='High Gradient Boosting',
-    feature_key='high_gradient_boosting',
-    threshold_key='high_gradient_boosting',
-    grid_params=models_grid['high_gradient_boosting'],
-    model_factory=lambda p: HistGradientBoostingClassifier(
-        learning_rate=p['learning_rate'],
-        max_depth=p['maximum_tree_depth'],
-        max_iter=p['maximum_iterations'],
-        min_samples_leaf=p['minimum_samples_per_leaf'],
-        random_state=p['random_state_seed']
-    ),
-    use_scaler=False,
-    report_path_key='paths.hgb_report'
-    )
+    data_file = project_root / Path(require_config_value(config, 'paths.dataset_parquet'))
+    df = pd.read_parquet(data_file)
+    df['date'] = pd.to_datetime(df['date'])
 
 
-run_grid(
-    model_name='Light Gradient Boosting',
-    feature_key='light_gradient_boosting',
-    threshold_key='light_gradient_boosting',
-    grid_params=models_grid['light_gradient_boosting'],
-    model_factory=lambda p: LGBMClassifier(
-        learning_rate=p['learning_rate'],
-        n_estimators=p['n_estimators'],
-        num_leaves=p['num_leaves'],
-        min_child_samples=p['min_child_samples'],
-        random_state=p['random_state'],
-        subsample=p['subsample'],
-        colsample_bytree=p['colsample_bytree'],
-        reg_alpha=p['reg_alpha'],
-        reg_lambda=p['reg_lambda'],
-        max_depth=p['max_depth'],
-        verbosity=p['verbosity']
-    ),
-    use_scaler=False,
-    report_path_key='paths.lightgbm_report'
-    )
+    split_values = require_config_value(config, 'split')
+    train_ratio = float(split_values['training_ratio'])
+    validation_ratio = float(split_values['validation_ratio'])
+    validation_end_ratio = train_ratio + validation_ratio
+
+    threshold_params = require_config_value(config, 'threshold_search')
+    features = require_config_value(config, 'features')
+    models_grid = require_config_value(config, 'models_grid')
+
+
+    df = df.sort_values('date').reset_index(drop=True)
+    unique_date = df['date'].unique()
+    n_dates = len(unique_date)
+
+
+    cut1 = int(n_dates * train_ratio)
+    cut2 = int(n_dates * validation_end_ratio)
+
+
+    train_end = unique_date[cut1 - 1]
+    val_end = unique_date[cut2 - 1]
+
+    train_df = df[df['date'] <= train_end].copy()
+    val_df = df[(df['date'] > train_end) & (df['date'] <= val_end)].copy()
+    test_df = df[df['date'] > val_end].copy()
+
+    report_tickers = sorted(train_df['ticker'].dropna().astype(str).unique().tolist())
+
+    
+    run_grid(
+        model_name='Logistic Regression',
+        feature_key='baseline',
+        threshold_key='logistic_regression_baseline',
+        grid_params=models_grid['logistic_regression'],
+        model_factory=lambda p: LogisticRegression(
+            max_iter=p['maximum_iterations'],
+            n_jobs=p['number_of_jobs'],
+            class_weight=p['class_weight_strategy']
+            ),
+        use_scaler=True,
+        report_path_key='paths.baseline_report'
+        )
+
+
+    run_grid(
+        model_name='High Gradient Boosting',
+        feature_key='hgb_lgb_cat',
+        threshold_key='high_gradient_boosting',
+        grid_params=models_grid['high_gradient_boosting'],
+        model_factory=lambda p: HistGradientBoostingClassifier(
+            learning_rate=p['learning_rate'],
+            max_depth=p['maximum_tree_depth'],
+            max_iter=p['maximum_iterations'],
+            min_samples_leaf=p['minimum_samples_per_leaf'],
+            random_state=p['random_state_seed']
+            ),
+        use_scaler=False,
+        report_path_key='paths.hgb_report'
+        )
+
+
+    run_grid(
+        model_name='Light Gradient Boosting',
+        feature_key='hgb_lgb_cat',
+        threshold_key='light_gradient_boosting',
+        grid_params=models_grid['light_gradient_boosting'],
+        model_factory=lambda p: LGBMClassifier(
+            learning_rate=p['learning_rate'],
+            n_estimators=p['n_estimators'],
+            num_leaves=p['num_leaves'],
+            min_child_samples=p['min_child_samples'],
+            random_state=p['random_state'],
+            subsample=p['subsample'],
+            colsample_bytree=p['colsample_bytree'],
+            reg_alpha=p['reg_alpha'],
+            reg_lambda=p['reg_lambda'],
+            max_depth=p['max_depth'],
+            verbosity=p['verbosity']
+            ),
+        use_scaler=False,
+        report_path_key='paths.lightgbm_report'
+        )
+    
+    
+    run_grid(
+        model_name='Cat Boost Classifier',
+        feature_key='hgb_lgb_cat',
+        threshold_key='cat_boost_classifier',
+        grid_params=models_grid['cat_boost_classifier'],
+        model_factory=lambda p: CatBoostClassifier(
+            learning_rate=p['learning_rate'],
+            depth=p['depth'],
+            iterations=p['iterations'],
+            l2_leaf_reg=p['l2_leaf_reg'],
+            random_seed=p['random_seed'],
+            loss_function=p['loss_function'],
+            eval_metric=p['eval_metric'],
+            verbose=p['verbose']
+            ),
+        use_scaler=False,
+        report_path_key='paths.cat_report'
+        )

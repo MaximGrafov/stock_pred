@@ -7,7 +7,7 @@ import numpy as np
 
 from pathlib import Path
 
-from additional_functions import load_config, require_config_value
+from support_functions import load_config, require_config_value
 
 
 project_root = Path(__file__).resolve().parents[1]
@@ -16,11 +16,12 @@ config = load_config(project_root)
 database_file = require_config_value(config, 'paths.database_file')
 dataset_parquet = require_config_value(config, 'paths.dataset_parquet')
 
-returns_windows = require_config_value(config, 'dataset.returns_windows')
-moving_average_windows = require_config_value(config, 'dataset.moving_average_windows')
-returns_clip_range = require_config_value(config, 'dataset.returns_clip_range')
-target_horizon_days = require_config_value(config, 'dataset.target_horizon_days')
-target_absolute_minimum_return = require_config_value(config, 'dataset.target_absolute_minimum_return')
+dataset_values = require_config_value(config, 'dataset')
+returns_windows = dataset_values['returns_windows']
+moving_average_windows = dataset_values['moving_average_windows']
+returns_clip_range = dataset_values['returns_clip_range']
+target_horizon_days = dataset_values['target_horizon_days']
+target_absolute_minimum_return = dataset_values['target_absolute_minimum_return']
 _features = require_config_value(config, 'features.dataset_columns')
 
 database_path = project_root / database_file

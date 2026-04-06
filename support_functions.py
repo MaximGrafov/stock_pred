@@ -156,28 +156,3 @@ def format_tickers(tickers: list[str], count_per_line: int):
     split_tickers = [', '.join(unique_sorted[num: num + count_per_line]) for num in range(0, len(unique_sorted), count_per_line)]
     
     return '\n'.join(split_tickers)
-
-
-def choice_tickers() -> list[str]:
-    
-    print(
-f"""
-Какой список тикеров использовать:
-
-1. Упрощенный (20 тикеров);
-2. Полный (388 тикеров).
-""")
-    
-    choose_tickers = int(input())
-    used_tickers = None
-
-    if choose_tickers == 1:
-        used_tickers = require_config_value(config, 'tickers.all_tickers')
-    
-    elif choose_tickers == 2:
-        used_tickers = require_config_value(config, 'tickers.all_tickers_1')
-    
-    else:
-        raise ValueError('Неверный выбор варианта!')
-    
-    return used_tickers

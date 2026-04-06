@@ -9,32 +9,9 @@ import yfinance as yf
 from pathlib import Path
 from tqdm import tqdm
 
-from additional_functions import (
-    load_config, require_config_value,
-    choice_tickers
-)
-
-project_root = Path(__file__).resolve().parent
-config = load_config(project_root)
-
-
-
-
-
-tickers = choice_tickers()
-if not isinstance(tickers, list) or not tickers:
-    raise ValueError('tickers.all_tickers должен быть не пустым списком')
-
-
-start_date = require_config_value(config, 'market_data.start_date')
-end_date = require_config_value(config, 'market_data.end_date')
-data_interval = require_config_value(config, 'market_data.data_interval')
-request_sleep_seconds = require_config_value(config, 'market_data.request_sleep_seconds')
-
-
-database_file = require_config_value(config, 'paths.database_file')
-database_path = project_root / database_file
-database_path.parent.mkdir(parents=True, exist_ok=True)
+from support_functions import (
+    load_config, require_config_value
+    )
 
 
 def load_one_ticker(ticker: str) -> pd.DataFrame:
@@ -127,4 +104,26 @@ def fill_db() -> None:
     
     
 if __name__ == '__main__':
+    
+    project_root = Path(__file__).resolve().parents[1]
+    config = load_config(project_root)
+
+    tickers = require_config_value(config, 'tickers')
+    
+    if not isinstance(tickers, list) or not tickers:
+        raise ValueError('tickers должен быть не пустым списком')
+
+
+    start_date = require_config_value(config, 'market_data.start_date')
+    end_date = require_config_value(config, 'market_data.end_date')
+    data_interval = require_config_value(config, 'market_data.data_interval')
+    request_sleep_seconds = require_config_value(config, 'market_data.request_sleep_seconds')
+
+
+    database_file = require_config_value(config, 'paths.database_file')
+    
+    database_path = project_root / database_file
+    database_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    
     fill_db()
